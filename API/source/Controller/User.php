@@ -139,10 +139,9 @@ switch ($_SERVER["REQUEST_METHOD"]){
             }
             echo json_encode(array("response"=>$return));
         }else{
-            echo json_encode(array("response"=>"Sem usuarios cadastrados"));
+            echo json_encode(array("response"=>"Sem tarefas cadastradas"));
         }
         break;
-
     // se tentar utilizar outro metodo nao configurado, apresenta esta mensagem de erro
     default;
         header("HTTP/1.1 401 UNAUTHORIZED");
