@@ -1,0 +1,22 @@
+{
+    "name": "rafae/todolist",
+    "description": "lista de tarefas",
+    "type": "project",
+    "require": {
+        "coffeecode/datalayer": "1.1.*",
+      "ext-json": "*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "RafaelManarin",
+            "email": "rafaelmanarin@outlook.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Source\\": "source/"
+        }
+    }
+}
