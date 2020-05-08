@@ -6,9 +6,9 @@ use Source\Models\Validations;
 require "../../vendor/autoload.php";
 require "../Config.php";
 
-const Adicionando=1;
-const Atualizando=2;
-const Deletando=3;
+const ADICIONANDO=1;
+const ATUALIZANDO=2;
+const DELETANDO=3;
 
 // Metodo POST
 switch ($_SERVER["REQUEST_METHOD"]){
@@ -41,7 +41,7 @@ switch ($_SERVER["REQUEST_METHOD"]){
             exit;
         }
         // acrescenta dados
-    if($verifica==Adicionando) {
+    if($verifica==ADICIONANDO) {
         // se tudo OK, envia os dados para o DB
         $tarefa = new Tarefa();
         $tarefa->usuario_id = $data->usuario_id;
@@ -61,7 +61,7 @@ switch ($_SERVER["REQUEST_METHOD"]){
         break;
     }
     // ATUALIZAR DADOS
-        if($verifica==Atualizando) {
+        if($verifica==ATUALIZANDO) {
             // captura o ID da tarefa
             $tarefaId=filter_input(INPUT_GET,"tarefa_id");
             //verifica se a tarefa existe
@@ -95,7 +95,7 @@ switch ($_SERVER["REQUEST_METHOD"]){
         }
 
     // DELETAR
-        if($verifica==Deletando) {
+        if($verifica==DELETANDO) {
             // captura o ID da tarefa
             $tarefaId=filter_input(INPUT_GET,"tarefa_id");
             //verifica se a terefa existe
