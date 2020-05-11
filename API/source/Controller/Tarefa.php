@@ -14,9 +14,10 @@ const DELETANDO=3;
 // Metodo POST
 switch ($_SERVER["REQUEST_METHOD"]){
     case "POST":
+        // verifica se será add, atualizado ou deletado as tarefas
         $verifica = filter_input(INPUT_GET,"informa");
         $data= json_decode(file_get_contents("php://input"));
-        // se nao forem enviados, vai apresentar esta mensagem de erro
+        // se nao forem enviados dados, vai apresentar esta mensagem de erro
         if(!$data){
             header("HTTP/1.1 400 BAD REQUEST");
             echo json_encode(array("response"=>"Nenhum dado informado"));
@@ -111,6 +112,7 @@ switch ($_SERVER["REQUEST_METHOD"]){
                 echo json_encode(array("response" => "Nenhuma tarefa localizada"));
                 exit;
             }
+            // se foi localizado a tarefa, será deletado
             $verify =  $tarefa->destroy();
             if( $tarefa->fail()){
                 header("HTTP/1.1 500 Internal Server Error");
@@ -118,9 +120,11 @@ switch ($_SERVER["REQUEST_METHOD"]){
                 exit;
             }
             if($verify) {
+                //caso delete a tarefa, apresentara esta mensagem
                 header("HTTP/1.1 201 Sucess");
                 echo json_encode(array("response" => "Tarefa Deletada"));
             }else{
+                // caso nao dele a tarefa, apresentará este erro
                 header("HTTP/1.1 201 Sucess");
                 echo json_encode(array("response" => "Nenhuma tarefa pode ser deletada"));
             }

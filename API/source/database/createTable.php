@@ -17,9 +17,9 @@ function criaTabela ($servername, $username, $password, $dbname){
 )";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Tabela criada com sucesso";
+        echo " Tabela criada com sucesso ";
     } else {
-        echo "Erro criando tabela: " . $conn->error;
+        echo " -Erro ao criar tabela: " . $conn->error;
     }
 
     $conn->close();

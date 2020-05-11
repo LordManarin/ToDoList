@@ -1,6 +1,8 @@
 <?php
-function criarDB($servername, $username, $password)
-{
+
+
+function criarDB($servername, $username, $password,$databasename){
+
 // Cria conexao
     $conn = new mysqli($servername, $username, $password);
 // Check connection
@@ -8,11 +10,11 @@ function criarDB($servername, $username, $password)
         die("Connection failed: " . $conn->connect_error);
     }
 // criando banco de dados
-    $sql = "CREATE DATABASE todolist";
+    $sql = "CREATE DATABASE $databasename";
     if ($conn->query($sql) === TRUE) {
-        echo "Banco de dados criada com sucesso";
+        echo " Banco de dados criada com sucesso ";
     } else {
-        echo " erro ao criar banco de dados: " . $conn->error;
+        echo " -Erro ao criar banco de dados: " . $conn->error;
     }
     $conn->close();
 };
