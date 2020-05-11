@@ -41,35 +41,35 @@ switch ($_SERVER["REQUEST_METHOD"]){
             exit;
         }
         // acrescenta dados
-    if($verifica==ADICIONANDO) {
-        // se tudo OK, envia os dados para o DB
-        $tarefa = new Tarefa();
-        $tarefa->usuario_id = $data->usuario_id;
-        $tarefa->tarefa = $data->tarefa;
-        $tarefa->descricao = $data->descricao;
-        $tarefa->concluido = $data->concluido;
-        $tarefa->save();
-        // se der ERRO no DB, informa esta msg de erro
-        if ( $tarefa->fail()) {
-            header("HTTP/1.1 500 Internal Server Error");
-            echo json_encode(array("response" =>  $tarefa->fail()->getMessage()));
-            exit;
+        if($verifica==ADICIONANDO) {
+            // se tudo OK, envia os dados para o DB
+            $tarefa = new Tarefa();
+            $tarefa->usuario_id = $data->usuario_id;
+            $tarefa->tarefa = $data->tarefa;
+            $tarefa->descricao = $data->descricao;
+            $tarefa->concluido = $data->concluido;
+            $tarefa->save();
+            // se der ERRO no DB, informa esta msg de erro
+            if ( $tarefa->fail()) {
+                header("HTTP/1.1 500 Internal Server Error");
+                echo json_encode(array("response" =>  $tarefa->fail()->getMessage()));
+                exit;
+            }
+            // se der tudo certo, informa esta mensagem
+            header("HTTP/1.1 200 CREATED");
+            echo json_encode(array("response" => "Tarefa Criada com Sucesso"));
+            break;
         }
-        // se der tudo certo, informa esta mensagem
-        header("HTTP/1.1 200 CREATED");
-        echo json_encode(array("response" => "Tarefa Criada com Sucesso"));
-        break;
-    }
-    // ATUALIZAR DADOS
+        // ATUALIZAR DADOS
         if($verifica==ATUALIZANDO) {
             // captura o ID da tarefa
             $tarefaId=filter_input(INPUT_GET,"tarefa_id");
             //verifica se a tarefa existe
             if(!$tarefaId){
-            header("HTTP/1.1 400  BAD REQUEST");
-            echo json_encode(array("responde"=>"ID não informado"));
-            exit;
-        }
+                header("HTTP/1.1 400  BAD REQUEST");
+                echo json_encode(array("responde"=>"ID não informado"));
+                exit;
+            }
             $tarefa = (new Tarefa())->findById($tarefaId);
             if(!$tarefa){
                 header("HTTP/1.1 201 Sucess");
@@ -94,7 +94,7 @@ switch ($_SERVER["REQUEST_METHOD"]){
             break;
         }
 
-    // DELETAR
+        // DELETAR
         if($verifica==DELETANDO) {
             // captura o ID da tarefa
             $tarefaId=filter_input(INPUT_GET,"tarefa_id");
@@ -125,7 +125,7 @@ switch ($_SERVER["REQUEST_METHOD"]){
             }
             break;
         }
-    break;
+        break;
 
     // Consulta
     case "GET":
