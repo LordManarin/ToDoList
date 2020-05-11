@@ -6,6 +6,7 @@ use Source\Models\Validations;
 require "../../vendor/autoload.php";
 require "../Config.php";
 
+// constantes que definem se será add, atualizado ou deletado as tarefas
 const ADICIONANDO=1;
 const ATUALIZANDO=2;
 const DELETANDO=3;
