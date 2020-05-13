@@ -7,7 +7,7 @@ require __DIR__ . "/../config.php";
 require __DIR__ . "/../Models/Tarefa.php";
 require __DIR__ . "/../Models/Validations.php";
 
-public function AtualizaTarefas($request, $response){
+function AtualizaTarefas($request, $response){
     $data= json_decode(file_get_contents("php://input"));
     // se nao forem enviados dados, vai apresentar esta mensagem de erro
     if(!$data){

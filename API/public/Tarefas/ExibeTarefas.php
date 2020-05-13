@@ -3,11 +3,10 @@ use Slim\Factory\AppFactory;
 use Source\Models\Tarefa;
 require __DIR__ . '/../../vendor/autoload.php';
 require __DIR__ . "/../config.php";
-require __DIR__ . "/../Models/Tarefa.php";
-require __DIR__ . "/../Models/Validations.php";
+//require __DIR__ . "/../Models/Tarefa.php";
+//require __DIR__ . '/../Models/Validations.php';
 
-public function ExibeTarefa ($request, $response)
-{
+function ExibeTarefa ($request, $response){
 
     $app = AppFactory::create();
 
