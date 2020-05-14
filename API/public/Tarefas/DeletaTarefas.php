@@ -1,12 +1,11 @@
 <?php
+use Slim\Factory\AppFactory;
 use Source\Models\Tarefa;
 use Source\Models\Validations;
 require __DIR__ . '/../../vendor/autoload.php';
-require __DIR__ . "/../config.php";
-require __DIR__ . "/../Models/Tarefa.php";
-require __DIR__ . "/../Models/Validations.php";
 
-function DeletaTarefas($request, $response){
+function DeletaTarefas($response){
+    $app = AppFactory::create();
     $data = json_decode(file_get_contents("php://input"));
     // se nao forem enviados dados, vai apresentar esta mensagem de erro
     if (!$data) {
@@ -55,5 +54,4 @@ function DeletaTarefas($request, $response){
         echo json_encode(array("response" => "Nenhuma tarefa pode ser deletada"));
     }
     return $response;
-
 }

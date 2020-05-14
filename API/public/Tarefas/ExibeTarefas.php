@@ -2,17 +2,12 @@
 use Slim\Factory\AppFactory;
 use Source\Models\Tarefa;
 require __DIR__ . '/../../vendor/autoload.php';
-require __DIR__ . "/../config.php";
-//require __DIR__ . "/../Models/Tarefa.php";
-//require __DIR__ . '/../Models/Validations.php';
 
-function ExibeTarefa ($request, $response){
+function ExibeTarefa ($response){
 
     $app = AppFactory::create();
 
     $app->addRoutingMiddleware();
-    $app->addErrorMiddleware(true, true, true);
-
 
     $usuarioId = filter_input(INPUT_GET, "usuario_id");
     header("HTTP/1.1 200 ok");
@@ -29,6 +24,5 @@ function ExibeTarefa ($request, $response){
         }
         echo json_encode(array("response" => $return));
     }
-    return $response;
 
 }
