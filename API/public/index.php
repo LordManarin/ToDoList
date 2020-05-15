@@ -2,14 +2,15 @@
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
+
 require __DIR__ . '/../vendor/autoload.php';
-require "Config.php";
-require "Models/Tarefa.php";
-require "Models/Validations.php";
-require "Tarefas/ExibeTarefas.php";
-require "Tarefas/PostaTarefas.php";
-require "Tarefas/AtualizaTarefas.php";
-require "Tarefas/DeletaTarefas.php";
+require __DIR__ . "/../src/config.php";
+require __DIR__ ."/../src/Models/Tarefa.php";
+require __DIR__ ."/../src/Models/Validations.php";
+require __DIR__ ."/../src/Tarefas/ExibeTarefas.php";
+require __DIR__ ."/../src/Tarefas/PostaTarefas.php";
+require __DIR__ ."/../src/Tarefas/AtualizaTarefas.php";
+require __DIR__ ."/../src/Tarefas/DeletaTarefas.php";
 
 $app = AppFactory::create();
 
