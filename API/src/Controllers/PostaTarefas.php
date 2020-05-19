@@ -1,14 +1,11 @@
 <?php
-use Slim\Factory\AppFactory;
+use Slim\App;
 use Source\Models\Tarefa;
 use Source\Models\Validations;
 require __DIR__ . '/../../vendor/autoload.php';
 
 function PostaTarefa($response){
-    $app = AppFactory::create();
-
-    $app->addRoutingMiddleware();
-
+    $app = new App;
     $data= json_decode(file_get_contents("php://input"));
     // se nao forem enviados dados, vai apresentar esta mensagem de erro
     if(!$data){

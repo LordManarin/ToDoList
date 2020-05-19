@@ -1,9 +1,7 @@
 <?php
 namespace Source\Models;
 
-use CoffeeCode\DataLayer\DataLayer;
-
-class Tarefa extends DataLayer{
+class Tarefa{
 
     public function __construct()
     {

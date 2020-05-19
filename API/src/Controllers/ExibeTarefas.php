@@ -1,13 +1,12 @@
 <?php
-use Slim\Factory\AppFactory;
+
+use Slim\App;
 use Source\Models\Tarefa;
 require __DIR__ . '/../../vendor/autoload.php';
 
-function ExibeTarefa ($response){
+function ExibeTarefas ($response){
 
-    $app = AppFactory::create();
-
-    $app->addRoutingMiddleware();
+    new App;
 
     $usuarioId = filter_input(INPUT_GET, "usuario_id");
     header("HTTP/1.1 200 ok");
@@ -19,7 +18,6 @@ function ExibeTarefa ($response){
         $usuario = new Tarefa();
         $return = array();
         foreach ($usuario->find("usuario_id =:usuario_id", "usuario_id=$usuarioId")->fetch(true) as $usuario) {
-
             array_push($return, $usuario->data());
         }
         echo json_encode(array("response" => $return));
