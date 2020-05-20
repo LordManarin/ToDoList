@@ -2,8 +2,7 @@
 namespace Source\Models;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class Tarefa extends Eloquent
-{
+class Tarefa extends Eloquent{
     public $timestamps = false;
     protected $table = 'tarefas';
     protected $fillable = [

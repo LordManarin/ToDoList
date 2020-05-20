@@ -10,29 +10,13 @@ class AcoesTarefas{
 
     function exibe(){
         $usuarioId = filter_input(INPUT_GET, "usuario_id");
-        $tarefas = Tarefa::all();
-        if( $tarefas->find($usuarioId)){
-            $return = array();
-            foreach ($tarefas as  $tarefa){
-                array_push($return, $tarefa->data());
-                echo json_encode(array("response"=>$return));
-            }
-            echo json_encode(array("response"=>$return));
-        }else{
-            echo json_encode(array("response"=>"Sem tarefas cadastradas"));
-        }
-        /*
-        $id_usuario= filter_input(INPUT_GET, "usuario_id");
-        $tarefaPorId = Tarefa::find($id_usuario);
-        $users = Tarefa::where('usuario_id', '=', $tarefaPorId)->get();
-        if($users){
-            $id_usuario = filter_input(INPUT_GET, "usuario_id");
-            $tarefa = Tarefa::where('usuario_id', '=', $tarefaPorId)->get();
+        header("HTTP/1.1 200 Ok");
 
-            foreach ($tarefa as $tarefas) {
-                echo $tarefas;
-            }
-        }*/
+        $tarefa = Tarefa::where('usuario_id', '=', $usuarioId)->get();
+        $return = array();
+        foreach($tarefa as $tarefas) {
+            array_push($return, $tarefas->data());
+        }
     }
     function cria(){
         $data= json_decode(file_get_contents("php://input"));
@@ -80,16 +64,22 @@ class AcoesTarefas{
 
     function deleta(){
         $tarefaId = filter_input(INPUT_GET, 'tarefa_id');
+
         if(!$tarefaId){
             header("HTTP/1.1 201 Sucess");
             echo json_encode(array("response" => "Nenhuma tarefa localizada"));
             exit;
         }
-        $tarefaId = Tarefa::destroy($tarefaId);
+        $tarefa= Tarefa::destroy($tarefaId);
+        if(!$tarefa) {
+            header("HTTP/1.1 200 Ok");
+            echo json_encode(array("response" => "Nenhuma pesquisa localizada!"));
+            exit;
+        }
+
     }
 
-    function atualiza()
-    {
+    function atualiza(){
         $data = json_decode(file_get_contents("php://input"));
         // se nao forem enviados dados, vai apresentar esta mensagem de erro
         if (!$data) {
@@ -132,7 +122,7 @@ class AcoesTarefas{
         }
         // informa os novos dados ao banco de dados
         $tarefaId = filter_input(INPUT_GET, "tarefa_id");
-        $tarefa = Tarefa::find($tarefaId);
+        $tarefa = Tarefa::where('usuario_id', '=', $tarefaId)->get();
         $tarefa->tarefa = $data->tarefa;
         $tarefa->descricao = $data->descricao;
         $tarefa->concluido = $data->concluido;

@@ -8,9 +8,9 @@
 
     ],
     "require": {
-        "illuminate/database": "^7.11",
-        "slim/slim": "3.*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "illuminate/database": "^7.12",
+        "slim/slim": "3.*"
     },
 
     "config": {
