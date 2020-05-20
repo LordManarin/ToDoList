@@ -12,10 +12,9 @@ class AcoesTarefas{
         $usuarioId = filter_input(INPUT_GET, "usuario_id");
         header("HTTP/1.1 200 Ok");
 
-        $tarefa = Tarefa::where('usuario_id', '=', $usuarioId)->get();
-        $return = array();
-        foreach($tarefa as $tarefas) {
-            array_push($return, $tarefas->data());
+        $tarefas = Tarefa::where('usuario_id', '=', $usuarioId)->get();
+        foreach($tarefas as $resposta) {
+            echo $resposta;
         }
     }
     function cria(){
