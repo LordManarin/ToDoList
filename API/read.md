@@ -3,21 +3,24 @@ Para utilizar esta API:
 GET > para utilizar a requisicao GET, deverá informar o ID do usuario com o paremetro "usuario_id".
 
 POST> basta informar os campos devidamente preenchidos
-                                    {
-                                   	"usuario_id": "",
-                                   	"tarefa": "",
-                                   	"descricao": "",
-                                   	"concluido": ""
-                                   }
-PUT> Basta informar o ID da terefa  que será atualizada com o paremetro "tarefa_id", junto dos campos devidamente preenchidos
-                                    {
-                                   	"usuario_id": "",
-                                   	"tarefa": "",
-                                   	"descricao": "",
-                                   	"concluido": ""
-                                   }
 
-DELETE > Basta informar o ID da tarefa a ser deletado com o paremetro "tarefa_id"
+    {
+     "usuario_id": "",
+     "tarefa": "",
+     "descricao": "",
+     "concluido": ""
+      }
+      
+PUT> Basta informar o ID da terefa  que será atualizada com o paremetro "id", junto dos campos devidamente preenchidos
+
+    {
+     "usuario_id": "",
+     "tarefa": "",
+     "descricao": "",
+     "concluido": ""
+      }
+      
+DELETE > Basta informar o ID da tarefa a ser deletado com o paremetro "id"
 
 
 Exemplo utilizando o PHP cURL:
