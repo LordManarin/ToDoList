@@ -3,7 +3,6 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 use Slim\App;
 use Slim\Container;
-use Source\Controllers\AcoesTarefas;
 
 require __DIR__ . "/../vendor/autoload.php";
 require __DIR__ . "/../bootstrap.php";
@@ -18,16 +17,17 @@ $configuration = [
 $configuracao = new Container($configuration);
 $app = new App($configuracao);
 
-$app->get('/', function (Request $request, Response $response) {
+
+$app->get('/exibe', function (Request $request, Response $response) {
     (new Source\Controllers\AcoesTarefas)->exibe();
 });
-$app->post('/', function (Request $request, Response $response) {
+$app->post('/posta', function (Request $request, Response $response) {
     (new Source\Controllers\AcoesTarefas)->cria();
 });
-$app->put('/', function (Request $request, Response $response) {
+$app->put('/atualiza', function (Request $request, Response $response) {
     (new Source\Controllers\AcoesTarefas)->atualiza();
 });
-$app->delete('/', function (Request $request, Response $response) {
+$app->delete('/deleta', function (Request $request, Response $response) {
     (new Source\Controllers\AcoesTarefas)->deleta();
 });
 

@@ -11,11 +11,12 @@ class AcoesTarefas{
     function exibe(){
         $usuarioId = filter_input(INPUT_GET, "usuario_id");
         header("HTTP/1.1 200 Ok");
-
+        // filtra os resultados para exibir somente as tarefas do usuario
         $tarefas = Tarefa::where('usuario_id', '=', $usuarioId)->get();
-        foreach($tarefas as $resposta) {
-            echo $resposta;
-        }
+        $return = array();
+        array_push($return, $tarefas->all());
+        // exibe as tarefas do usuario
+        echo json_encode(array("response" => $return));
     }
     function cria(){
         $data= json_decode(file_get_contents("php://input"));
