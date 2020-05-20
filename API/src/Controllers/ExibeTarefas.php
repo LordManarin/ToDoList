@@ -1,11 +1,21 @@
 <?php
 
-use Slim\App;
 use Source\Models\Tarefa;
 require __DIR__ . '/../../vendor/autoload.php';
 
-function ExibeTarefas ($response){
 
+function ExibeTarefas (){
+
+    $tarefa = Tarefa::all();
+
+    foreach ($tarefa as $tarefa) {
+        echo $tarefa;
+    }
+
+
+
+
+    /*
     new App;
 
     $usuarioId = filter_input(INPUT_GET, "usuario_id");
@@ -22,5 +32,5 @@ function ExibeTarefas ($response){
         }
         echo json_encode(array("response" => $return));
     }
-
+*/
 }

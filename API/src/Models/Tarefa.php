@@ -1,10 +1,17 @@
 <?php
 namespace Source\Models;
+use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class Tarefa{
+class Tarefa extends Eloquent
+{
+    public $timestamps = false;
+    protected $table = 'tarefas';
+    protected $fillable = [
+        "tarefa_id",
+        "usuario_id",
+        "tarefa",
+        "descricao",
+        "concluido",
 
-    public function __construct()
-    {
-        parent::__construct("tarefas",["usuario_id","tarefa","descricao","concluido"],"tarefa_id", false);
-    }
+    ];
 }

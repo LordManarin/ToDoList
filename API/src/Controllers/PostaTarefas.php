@@ -3,9 +3,9 @@ use Slim\App;
 use Source\Models\Tarefa;
 use Source\Models\Validations;
 require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__. '/../../bootstrap.php';
 
 function PostaTarefa($response){
-    $app = new App;
     $data= json_decode(file_get_contents("php://input"));
     // se nao forem enviados dados, vai apresentar esta mensagem de erro
     if(!$data){
@@ -39,11 +39,7 @@ function PostaTarefa($response){
     $tarefa->descricao = $data->descricao;
     $tarefa->concluido = $data->concluido;
     $tarefa->save();
-    if ( $tarefa->fail()) {
-        header("HTTP/1.1 500 Internal Server Error");
-        echo json_encode(array("response" =>  $tarefa->fail()->getMessage()));
-        exit;
-    }
+
     // se der tudo certo, informa esta mensagem
     header("HTTP/1.1 200 CREATED");
     echo json_encode(array("response" => "Tarefa Criada com Sucesso"));
