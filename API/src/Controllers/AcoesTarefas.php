@@ -106,7 +106,7 @@ class AcoesTarefas{
             exit;
         }
         // captura o ID da tarefa
-        $tarefaId = filter_input(INPUT_GET, "tarefa_id");
+        $tarefaId = filter_input(INPUT_GET, "id");
         //verifica se a tarefa existe
         if (!$tarefaId) {
             header("HTTP/1.1 400  BAD REQUEST");
@@ -120,14 +120,15 @@ class AcoesTarefas{
             exit;
         }
         // informa os novos dados ao banco de dados
-        $tarefaId = filter_input(INPUT_GET, "tarefa_id");
-        $tarefa = Tarefa::where('usuario_id', '=', $tarefaId)->get();
+        $tarefaId = filter_input(INPUT_GET, "id");
+        $tarefa = Tarefa::find($tarefaId);
+        $tarefa->usuario_id = $data->usuario_id;
         $tarefa->tarefa = $data->tarefa;
         $tarefa->descricao = $data->descricao;
         $tarefa->concluido = $data->concluido;
         $tarefa->save();
         // caso tudo ocorra bem
-        header("HTTP/1.1 201 Sucess");
+        header("HTTP/1.1 201 Success");
         echo json_encode(array("response" => "Tarefa Atualizada"));
 
     }
