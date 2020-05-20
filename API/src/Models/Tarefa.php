@@ -6,11 +6,10 @@ class Tarefa extends Eloquent{
     public $timestamps = false;
     protected $table = 'tarefas';
     protected $fillable = [
-        "tarefa_id",
+        "id",
         "usuario_id",
         "tarefa",
         "descricao",
-        "concluido",
-
+        "concluido"
     ];
 }

@@ -1,39 +1,34 @@
 <?php
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Source\Models\Tarefa;
-
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
 use Slim\App;
+use Slim\Container;
+use Source\Controllers\AcoesTarefas;
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . "/../vendor/autoload.php";
+require __DIR__ . "/../bootstrap.php";
+require __DIR__ . "/../src/Controllers/AcoesTarefas.php";
+require __DIR__ . "/../src/Models/Validations.php";
 
-$app = new App;
+$configuration = [
+    'settings' => [
+        'displayErrorDetails' => true,
+    ],
+];
+$configuracao = new Container($configuration);
+$app = new App($configuracao);
 
-/* EXIBE AS TAREFAS FILTRANDO COM BASE NO usuario_id */
-$app->get('/', function (Request $request, Response $response): Response {
-    $tarefa = Tarefa::all();
-
-    foreach ($tarefa as $tarefas) {
-        echo $tarefa;
-    }
-    return $response;
+$app->get('/', function (Request $request, Response $response) {
+    (new Source\Controllers\AcoesTarefas)->exibe();
 });
-/* INSERE UMA TAREFA NOVA */
-$app->post("/", function (Request $request, Response $response, $args): Response {
-    PostaTarefa($response);
-    return $response;
+$app->post('/', function (Request $request, Response $response) {
+    (new Source\Controllers\AcoesTarefas)->cria();
 });
-/* ATUALIZA UMA TAREFA EXISTENTE*/
-$app->put("/", function (Request $request, Response $response, $args): Response {
-    AtualizaTarefas($response);
-    return $response;
+$app->put('/', function (Request $request, Response $response) {
+    (new Source\Controllers\AcoesTarefas)->atualiza();
 });
-/* DELETA UMA TAREFA EXISTENTE*/
-$app->delete("/", function (Request $request, Response $response, $args): Response {
-    $id = filter_input(INPUT_GET, 'tarefa_id');
-
-    $tarefa =\Tarefa::destroy($id);
-    return $response;
+$app->delete('/', function (Request $request, Response $response) {
+    (new Source\Controllers\AcoesTarefas)->deleta();
 });
 
 $app->run();

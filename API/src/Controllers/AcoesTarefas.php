@@ -62,20 +62,20 @@ class AcoesTarefas{
     }
 
     function deleta(){
-        $tarefaId = filter_input(INPUT_GET, 'tarefa_id');
-
+        $tarefaId = filter_input(INPUT_GET, 'id');
         if(!$tarefaId){
             header("HTTP/1.1 201 Sucess");
             echo json_encode(array("response" => "Nenhuma tarefa localizada"));
             exit;
         }
         $tarefa= Tarefa::destroy($tarefaId);
-        if(!$tarefa) {
+        if($tarefa) {
             header("HTTP/1.1 200 Ok");
-            echo json_encode(array("response" => "Nenhuma pesquisa localizada!"));
-            exit;
+            echo json_encode(array("response" => "Tarefa removida com sucesso!"));
+        }else{
+            header("HTTP/1.1 200 Ok");
+            echo json_encode(array("response" => "Nenhuma tarefa removida"));
         }
-
     }
 
     function atualiza(){

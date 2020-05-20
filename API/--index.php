@@ -15,8 +15,8 @@ $configuration = [
         'displayErrorDetails' => true,
     ],
 ];
-$c = new Container($configuration);
-$app = new App($c);
+$configuracao = new Container($configuration);
+$app = new App($configuracao);
 
 $app->get('/', function (Request $request, Response $response) {
     (new Source\Controllers\AcoesTarefas)->exibe();
