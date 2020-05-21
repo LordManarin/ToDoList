@@ -17,7 +17,9 @@ $configuration = [
 $configuracao = new Container($configuration);
 $app = new App($configuracao);
 
-
+$app->get('/token', function (Request $request, Response $response) {
+    (new Source\Controllers\TokenJwt)->GerarToken();
+});
 $app->get('/exibe', function (Request $request, Response $response) {
     (new Source\Controllers\AcoesTarefas)->exibe();
 });
