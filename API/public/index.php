@@ -18,20 +18,19 @@ $configuration = [
 $configuracao = new Container($configuration);
 $app = new App($configuracao);
 
-$app->get('/token', function (Request $request, Response $response) {
+$app->post('/token', function (Request $request, Response $response) {
     (new Source\Controllers\TokenJwt)->GerarToken();
 });
 $app->get('/exibe', function (Request $request, Response $response) {
-    (new Source\Controllers\AcoesTarefas)->exibe();});
-    /*->add(function ($request, $response, $next){
+    (new Source\Controllers\AcoesTarefas)->exibe();})
+    ->add(function ($request, $response, $next){
         $token = $request->getAttribute("jwt");
         $response=$next($request, $response);
         return $response;
     })
     ->add(new JwtAuthentication([
-        'secret'=> getenv('JWT_SECRET_KEY'),
-        'attribute' => 'jwt']));*/
-
+        'secret'=> '123456',
+        'attribute' => 'jwt']));
 $app->post('/posta', function (Request $request, Response $response) {
     (new Source\Controllers\AcoesTarefas)->cria();
 });
