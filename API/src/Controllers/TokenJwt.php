@@ -40,4 +40,5 @@ class TokenJwt{
         $token = $header . '.' . $payload . '.'. $sign;
         print $token;
     }
+
 }
