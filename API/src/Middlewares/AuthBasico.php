@@ -7,11 +7,10 @@ function AuthBasico(): HttpBasicAuthentication{
         "users"=> [
             "root"=> "teste"
             ],
-        "error" => function ($response, $arguments) {
+        "error" => function ($response) {
             $body = $response->getBody();
             $body->write(json_encode(array("response"=>"Usuario ou senha incorretos")));
             return $response->withBody($body);
-        }
-        ]);
+        }]);
 
 }
