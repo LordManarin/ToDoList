@@ -5,11 +5,9 @@ require __DIR__. "/../../vendor/autoload.php";
 use Source\Models\Validations;
 use Source\Models\Tarefa;
 
-
 class AcoesTarefas{
-
     function exibe(){
-        $usuarioId = filter_input(INPUT_GET, "usuario_id");
+        $usuarioId = $_SESSION['usuario_Id'];
         header("HTTP/1.1 200 Ok");
         // filtra os resultados para exibir somente as tarefas do usuario
         $tarefas = Tarefa::where('usuario_id', '=', $usuarioId)->get();
@@ -19,6 +17,7 @@ class AcoesTarefas{
         echo json_encode(array("response" => $return));
     }
     function cria(){
+        $usuarioId = $_SESSION['usuario_Id'];
         $data= json_decode(file_get_contents("php://input"));
         // se nao forem enviados dados, vai apresentar esta mensagem de erro
         if(!$data){
@@ -27,10 +26,6 @@ class AcoesTarefas{
             exit;
         }
         $errors=array();
-        // testa se todos os campos estao preenchidos
-        if(!Validations::validationInteger($data->usuario_id)) {
-            array_push($errors, "usuario_id invalido");
-        }
         if(!Validations::validationsString($data->tarefa)){
             array_push($errors, "Tarefa invalido");
         }
@@ -52,7 +47,7 @@ class AcoesTarefas{
         }
         // se tudo OK, envia os dados para o DB
         $tarefa = new Tarefa();
-        $tarefa->usuario_id = $data->usuario_id;
+        $tarefa->usuario_id = $usuarioId;
         $tarefa->tarefa = $data->tarefa;
         $tarefa->descricao = $data->descricao;
         $tarefa->concluido = $data->concluido;
@@ -89,9 +84,7 @@ class AcoesTarefas{
         }
         $errors = array();
         // testa se todos os campos estao preenchidos
-        if (!Validations::validationInteger($data->usuario_id)) {
-            array_push($errors, "usuario_id invalido");
-        }
+
         if (!Validations::validationsString($data->tarefa)) {
             array_push($errors, "Tarefa invalido");
         }
@@ -123,7 +116,6 @@ class AcoesTarefas{
         // informa os novos dados ao banco de dados
         $tarefaId = filter_input(INPUT_GET, "id");
         $tarefa = Tarefa::find($tarefaId);
-        $tarefa->usuario_id = $data->usuario_id;
         $tarefa->tarefa = $data->tarefa;
         $tarefa->descricao = $data->descricao;
         $tarefa->concluido = $data->concluido;

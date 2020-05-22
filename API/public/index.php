@@ -9,7 +9,10 @@ require __DIR__ . "/../vendor/autoload.php";
 require __DIR__ . "/../bootstrap.php";
 require __DIR__ . "/../src/Controllers/AcoesTarefas.php";
 require __DIR__ . "/../src/Models/Validations.php";
-require __DIR__ . "/../src/AuthBasico.php";
+require __DIR__ . "/../src/Middlewares/AuthToken.php";
+require __DIR__ . "/../src/Middlewares/AuthBasico.php";
+
+session_start();
 
 $configuration = [
     'settings' => [
@@ -20,12 +23,8 @@ $configuracao = new Container($configuration);
 $app = new App($configuracao);
 
 $app->post('/login', function (Request $request, Response $response) {
-
-});
-
-$app->post('/token', function (Request $request, Response $response) {
     (new Source\Controllers\TokenJwt)->GerarToken();
-});
+   })->add(AuthBasico());
 $app->group('', function () use ($app) {
     $app->get('/exibe', function (Request $request, Response $response) {
         (new Source\Controllers\AcoesTarefas)->exibe();
@@ -39,6 +38,6 @@ $app->group('', function () use ($app) {
     $app->delete('/deleta', function (Request $request, Response $response) {
         (new Source\Controllers\AcoesTarefas)->deleta();
     });
-})->add(AuthBasico());
+})->add(AuthToken());
 
 $app->run();
