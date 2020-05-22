@@ -3,8 +3,6 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 use Slim\App;
 use Slim\Container;
-use Source\Middlewares\AuthMiddle;
-use Tuupola\Middleware\JwtAuthentication;
 use function src\AuthBasico;
 
 require __DIR__ . "/../vendor/autoload.php";
