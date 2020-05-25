@@ -5,9 +5,14 @@ use Firebase\JWT\JWT;
 
 
 class TokenJwt{
-    function GerarToken(){
-        $usuarioId = filter_input(INPUT_GET, "usuario_id");
-        $usuario   = filter_input(INPUT_GET, "usuario");
+    function GerarToken($request){
+
+        $data = $request->getParsedBody();
+        $usuarioId= $data['usaurio_id'];
+        $usuario = $data['usuario'];
+        $senha = $data['senha'];
+        //$usuarioId = filter_input(INPUT_GET, "usuario_id");
+        //$usuario   = filter_input(INPUT_GET, "usuario");
         // chave da aplicacao
         $key = "abcde";
         $tokenPayLoad=[
@@ -19,6 +24,5 @@ class TokenJwt{
         $_SESSION['token']= $token;
         print $token;
     }
-
 
 }
