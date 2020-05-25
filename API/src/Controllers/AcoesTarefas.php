@@ -2,14 +2,19 @@
 namespace Source\Controllers;
 require __DIR__. "/../../vendor/autoload.php";
 
+use Firebase\JWT\JWT;
 use Source\Models\Validations;
 use Source\Models\Tarefa;
 
 class AcoesTarefas{
     function exibe(){
-        $token = $_SESSION['token'];
-        $token->getAttribute("token");
-        $usuarioId = $token["sub"];
+        $jwt = $_SESSION['token'];
+        $tokenDecode= JWT::decode($jwt,"abcde",array('HS256'));
+        $tokenDecodeArray = array($tokenDecode);
+        $usuarioId=$tokenDecodeArray[2];
+
+
+
         header("HTTP/1.1 200 Ok");
         // filtra os resultados para exibir somente as tarefas do usuario
         $tarefas = Tarefa::where('usuario_id', '=', $usuarioId)->get();
