@@ -9,12 +9,9 @@ use Source\Models\Tarefa;
 class AcoesTarefas{
     function exibe(){
         $jwt = $_SESSION['token'];
-        $tokenDecode= JWT::decode($jwt,"abcde",array('HS256'));
-        $tokenDecodeArray = array($tokenDecode);
-        $usuarioId=$tokenDecodeArray[2];
-
-
-
+        $tokenParts = explode('.', $jwt);
+        $payload = base64_decode($tokenParts[1]);
+        $usuarioId=$payload[8];
         header("HTTP/1.1 200 Ok");
         // filtra os resultados para exibir somente as tarefas do usuario
         $tarefas = Tarefa::where('usuario_id', '=', $usuarioId)->get();
@@ -25,9 +22,10 @@ class AcoesTarefas{
     }
     function cria(){
         //$usuarioId = $_SESSION['usuario_Id'];
-        $token = $_SESSION['token'];
-        $token->getAttribute("token");
-        $usuarioId = $token["sub"];
+        $jwt = $_SESSION['token'];
+        $tokenParts = explode('.', $jwt);
+        $payload = base64_decode($tokenParts[1]);
+        $usuarioId=$payload[8];
         $data= json_decode(file_get_contents("php://input"));
         // se nao forem enviados dados, vai apresentar esta mensagem de erro
         if(!$data){
