@@ -19,7 +19,10 @@ class AcoesTarefas{
         echo json_encode(array("response" => $return));
     }
     function cria(){
-        $usuarioId = $_SESSION['usuario_Id'];
+        //$usuarioId = $_SESSION['usuario_Id'];
+        $token = $_SESSION['token'];
+        $token->getAttribute("token");
+        $usuarioId = $token["sub"];
         $data= json_decode(file_get_contents("php://input"));
         // se nao forem enviados dados, vai apresentar esta mensagem de erro
         if(!$data){

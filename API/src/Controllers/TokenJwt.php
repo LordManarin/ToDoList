@@ -6,7 +6,6 @@ use Firebase\JWT\JWT;
 
 class TokenJwt{
     function GerarToken($request){
-
         $data = $request->getParsedBody();
         $usuarioId= $data['usaurio_id'];
         $usuario = $data['usuario'];

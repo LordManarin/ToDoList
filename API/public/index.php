@@ -23,7 +23,7 @@ $configuracao = new Container($configuration);
 $app = new App($configuracao);
 
 $app->post('/login', function (Request $request, Response $response) {
-    (new Source\Controllers\TokenJwt)->GerarToken();
+    (new Source\Controllers\TokenJwt)->GerarToken($request);
    })->add(AuthBasico());
 $app->group('', function () use ($app) {
     $app->get('/exibe', function (Request $request, Response $response) {
