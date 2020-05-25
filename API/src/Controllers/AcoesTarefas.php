@@ -7,7 +7,9 @@ use Source\Models\Tarefa;
 
 class AcoesTarefas{
     function exibe(){
-        $usuarioId = $_SESSION['usuario_Id'];
+        $token = $_SESSION['token'];
+        $token->getAttribute("token");
+        $usuarioId = $token["sub"];
         header("HTTP/1.1 200 Ok");
         // filtra os resultados para exibir somente as tarefas do usuario
         $tarefas = Tarefa::where('usuario_id', '=', $usuarioId)->get();
