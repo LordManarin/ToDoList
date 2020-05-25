@@ -1,36 +1,33 @@
 <?php
 namespace Source\Controllers;
-use PDO;
-use Tuupola\Middleware\HttpBasicAuthentication;
-use Tuupola\Middleware\HttpBasicAuthentication\PdoAuthenticator;
 require __DIR__."/../../bootstrap.php";
+use Firebase\JWT\JWT;
+use Source\Models\Usuarios;
 
+function AuthBasico()
+{
+    $usuario = $_SERVER['PHP_AUTH_USER'];
+    $senha = $_SERVER['PHP_AUTH_PW'];
 
-function AuthBasico(){
-   $usuario= $_SERVER['PHP_AUTH_USER'];
-   $senha= $_SERVER['PHP_AUTH_PW'];
+    $verifica = Usuarios::where('usuario', '=', $usuario, 'AND', 'senha', '=', $senha)->get();
+    $usuarioId = Usuarios::where('usuario', '=', $usuario, 'AND', 'senha', '=', $senha)->value("usuario_id");
 
-
-
-
-
-
-    /*
-     * HttpBasicAuthentication
-    $pdo = new PDO('mysql:host=localhost;port=3306;dbname=todolist',"root", "");
-    return new httpBasicAuthentication([
-            "authenticator" => new PdoAuthenticator([
-                "pdo" => $pdo,
-                "table" => "usuarios",
-                "user" => "usuario",
-                "hash"=>"senha"
-            ])
-            ,
-            "error" => function ($response) {
-                $body = $response->getBody();
-                $body->write(json_encode(array("response"=>"Usuario ou senha incorretos")));
-                return $response->withBody($body);
-            }]);*/
-
+    if (!$verifica) {
+        header("HTTP/1.1 200 Ok");
+        echo json_encode(array("response" => "Senha Incorreta"));
+        exit;
+    } else {
+        header("HTTP/1.1 200 Ok");
+        $key = "abcde";
+        $tokenPayLoad=[
+            "sub"=>$usuarioId,
+            "name"=>$usuario,
+        ];
+        $token = JWT::encode($tokenPayLoad, $key);
+        $_SESSION['token']= $token;
+        print $token;
+    }
 }
+
+
 

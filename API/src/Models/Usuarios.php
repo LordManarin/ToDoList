@@ -7,6 +7,7 @@ class Usuarios extends eloquent{
     protected $table = 'usuarios';
     protected $fillable = [
         "id",
+        "usuario_id",
         "usuario",
         "senha"
     ];
