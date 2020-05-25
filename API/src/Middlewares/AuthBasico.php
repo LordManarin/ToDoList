@@ -12,7 +12,7 @@ function AuthBasico()
     $usuarioId = Usuarios::where('usuario', '=', $usuario, 'AND', 'senha', '=', $senha)->value("usuario_id");
     $_SESSION['ID']= $usuarioId;
 
-    if($verifica) {
+    if($verifica==true) {
         return new httpBasicAuthentication([
             "users" => [
                 "root" => "teste"
@@ -24,7 +24,7 @@ function AuthBasico()
         }]);
     }else{
         header("HTTP/1.1 400 BAD REQUEST");
-        echo json_encode(array("response"=>"Nenhum dado informado"));
+        echo json_encode(array("response"=>"Usuario ou senha incorretos"));
         exit;
     }
 }

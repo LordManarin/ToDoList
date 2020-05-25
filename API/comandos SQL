@@ -21,3 +21,8 @@ CREATE TABLE tarefas (
     CONSTRAINT fk_tarefas_usuario_id_usuario_id
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );
+INSERT INTO `usuarios`(`usuario_id`, `nome`, `usuario`, `senha`)
+VALUES ('1', 'Rafael Manarin','rafael','123');
+
+INSERT INTO `usuarios`(`usuario_id`, `nome`, `usuario`, `senha`)
+VALUES ('2', 'Fulano de Tal','fulano','123');
