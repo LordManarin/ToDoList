@@ -9,7 +9,7 @@ function AuthBasico()
     $usuario = $_SERVER['PHP_AUTH_USER'];
     $senha = $_SERVER['PHP_AUTH_PW'];
 
-    $verifica = Usuarios::where('usuario', '=', $usuario, 'AND', 'senha', '=', $senha)->get();
+    $verifica = Usuarios::where('usuario', '=', $usuario, 'AND', 'senha', '=', $senha)->value("usuario");
     $usuarioId = Usuarios::where('usuario', '=', $usuario, 'AND', 'senha', '=', $senha)->value("usuario_id");
 
     if (!$verifica) {
