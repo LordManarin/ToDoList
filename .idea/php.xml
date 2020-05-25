@@ -56,9 +56,30 @@
       <path value="$PROJECT_DIR$/API/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/API/vendor/psr/http-server-handler" />
       <path value="$PROJECT_DIR$/API/vendor/monolog/monolog" />
+      <path value="" />
+      <path value="$PROJECT_DIR$/API/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/API/vendor/pimple/pimple" />
+      <path value="$PROJECT_DIR$/API/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/API/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/API/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/API/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/API/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/API/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/API/vendor/tuupola/slim-jwt-auth" />
+      <path value="$PROJECT_DIR$/API/vendor/tuupola/slim-basic-auth" />
+      <path value="$PROJECT_DIR$/API/vendor/tuupola/callable-handler" />
+      <path value="$PROJECT_DIR$/API/vendor/tuupola/http-factory" />
+      <path value="$PROJECT_DIR$/API/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/API/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/API/vendor/illuminate/contracts" />
+      <path value="$PROJECT_DIR$/API/vendor/illuminate/database" />
+      <path value="$PROJECT_DIR$/API/vendor/illuminate/container" />
+      <path value="$PROJECT_DIR$/API/vendor/illuminate/support" />
+      <path value="$PROJECT_DIR$/API/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/API/vendor/voku/portable-ascii" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />
   <component name="PhpUnit">
     <phpunit_settings>
       <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" />

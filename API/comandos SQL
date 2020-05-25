@@ -18,4 +18,6 @@ CREATE TABLE tarefas (
     tarefa VARCHAR(255) NOT NULL,
     descricao VARCHAR(1000) NOT NULL,
     concluido TINYINT NOT NULL DEFAULT 1
+    CONSTRAINT fk_tokens_usuarios_id_usuarios_id
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );

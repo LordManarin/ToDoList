@@ -27,7 +27,7 @@
         }
     },
     "scripts": {
-        "start": "php -S localhost:8000 -t Public",
+        "start": "php -S localhost:8080 -t Public",
         "test": "phpunit"
     }
 }
