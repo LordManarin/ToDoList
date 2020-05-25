@@ -24,7 +24,7 @@ $configuracao = new Container($configuration);
 $app = new App($configuracao);
 
 $app->post('/login', function (Request $request, Response $response) {
-    (new Source\Controllers\TokenJwt)->GerarToken($request);
+    (new Source\Controllers\TokenJwt)->GerarToken();
   })->add(AuthBasico());
 
 $app->group('', function () use ($app) {

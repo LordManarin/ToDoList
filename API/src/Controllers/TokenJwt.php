@@ -5,10 +5,7 @@ use Firebase\JWT\JWT;
 
 
 class TokenJwt{
-    function GerarToken($request){
-        //$data = $request->getParsedBody();
-        //$usuarioId= $data['usuario_id'];
-        //$usuario = $data['usuario'];
+    function GerarToken(){
         $usuarioId = filter_input(INPUT_GET, "usuario_id");
         $usuario   = filter_input(INPUT_GET, "usuario");
         // chave da aplicacao
@@ -18,6 +15,7 @@ class TokenJwt{
             "name"=>$usuario,
         ];
         $token = JWT::encode($tokenPayLoad, $key);
+        $_SESSION['usuario_Id']= $usuarioId;
         $_SESSION['token']= $token;
         print $token;
 
