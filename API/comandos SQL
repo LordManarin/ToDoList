@@ -9,7 +9,7 @@ CREATE TABLE tokens (
     usuario_id INT UNSIGNED NOT NULL,
     token VARCHAR(1000) NOT NULL,
     active TINYINT UNSIGNED NOT NULL DEFAULT 1,
-    CONSTRAINT fk_tokens_usuarios_id_usuarios_id
+    CONSTRAINT fk_tokens_usuario_id_usuario_id
         FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );
 CREATE TABLE tarefas (
@@ -18,6 +18,6 @@ CREATE TABLE tarefas (
     tarefa VARCHAR(255) NOT NULL,
     descricao VARCHAR(1000) NOT NULL,
     concluido TINYINT NOT NULL DEFAULT 1
-    CONSTRAINT fk_tarefas_usuarios_id_usuarios_id
+    CONSTRAINT fk_tarefas_usuario_id_usuario_id
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );
