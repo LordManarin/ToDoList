@@ -7,9 +7,8 @@ use Firebase\JWT\JWT;
 class TokenJwt{
     function GerarToken($request){
         $data = $request->getParsedBody();
-        $usuarioId= $data['usaurio_id'];
+        $usuarioId= $data['usuario_id'];
         $usuario = $data['usuario'];
-        $senha = $data['senha'];
         //$usuarioId = filter_input(INPUT_GET, "usuario_id");
         //$usuario   = filter_input(INPUT_GET, "usuario");
         // chave da aplicacao

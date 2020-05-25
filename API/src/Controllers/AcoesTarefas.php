@@ -128,6 +128,5 @@ class AcoesTarefas{
         // caso tudo ocorra bem
         header("HTTP/1.1 201 Success");
         echo json_encode(array("response" => "Tarefa Atualizada"));
-
     }
 }
