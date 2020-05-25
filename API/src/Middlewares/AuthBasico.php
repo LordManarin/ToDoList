@@ -1,34 +1,36 @@
 <?php
 namespace Source\Controllers;
+use PDO;
 use Tuupola\Middleware\HttpBasicAuthentication;
+use Tuupola\Middleware\HttpBasicAuthentication\PdoAuthenticator;
+require __DIR__."/../../bootstrap.php";
 
-    function AuthBasico(): HttpBasicAuthentication{
-        return new httpBasicAuthentication([
-            "users"=> [
-                "Rafael"=> "teste"
-            ],
+
+function AuthBasico(){
+   $usuario= $_SERVER['PHP_AUTH_USER'];
+   $senha= $_SERVER['PHP_AUTH_PW'];
+
+
+
+
+
+
+    /*
+     * HttpBasicAuthentication
+    $pdo = new PDO('mysql:host=localhost;port=3306;dbname=todolist',"root", "");
+    return new httpBasicAuthentication([
+            "authenticator" => new PdoAuthenticator([
+                "pdo" => $pdo,
+                "table" => "usuarios",
+                "user" => "usuario",
+                "hash"=>"senha"
+            ])
+            ,
             "error" => function ($response) {
                 $body = $response->getBody();
                 $body->write(json_encode(array("response"=>"Usuario ou senha incorretos")));
                 return $response->withBody($body);
-            }]);
+            }]);*/
 
-};
-/*
-function AuthBasico(): HttpBasicAuthentication{
-    $usuario = $_POST['usuario'];
-    $senha = $_POST['senha'];
-    $connect = mysqli_connect('localhost','root','', "todolist");
-    $verifica = mysqli_query($connect,"SELECT * FROM usuarios WHERE usuario ='$usuario' AND senha = '$senha'") or die("erro ao realizar o login");
-        if (!$verifica) {
-            header("HTTP/1.1 400 BAD REQUEST");
-            echo json_encode(array("response" => "Usuario ou senha incorretos"));
-            die();
-        } else {
-            return new httpBasicAuthentication([
-                "users" => [
-                    "$usuario" => "$senha"
-                ]]);
-        }
 }
-*/
+

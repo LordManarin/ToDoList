@@ -18,7 +18,6 @@ class TokenJwt{
             "name"=>$usuario,
         ];
         $token = JWT::encode($tokenPayLoad, $key);
-        $_SESSION['usuario_Id']= $usuarioId;
         $_SESSION['token']= $token;
         print $token;
 

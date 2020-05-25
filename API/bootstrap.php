@@ -13,4 +13,6 @@ $capsule->addConnection([
     'username' => 'root',
     'password' => '',
 ]);
+
+$capsule->setAsGlobal();
 $capsule->bootEloquent();
