@@ -7,22 +7,24 @@ use Tuupola\Middleware\HttpBasicAuthentication;
 
 function AuthBasico()
 {
-    //$usuario = $_SERVER['PHP_AUTH_USER'];
-    //$senha = $_SERVER['PHP_AUTH_PW'];
+    $usuario   = filter_input(INPUT_GET, "usuario");
+    $senha = filter_input(INPUT_GET, "senha");
+    $verifica = Usuarios::where('usuario', '=', $usuario, 'AND', 'senha', '=', $senha)->value("usuario");
 
-   //$verifica = Usuarios::where('usuario', '=', $usuario, 'AND', 'senha', '=', $senha)->value("usuario");
-   //$usuarioId = Usuarios::where('usuario', '=', $usuario, 'AND', 'senha', '=', $senha)->value("usuario_id");
-    return new httpBasicAuthentication([
+    $usuarioId = Usuarios::where('usuario', '=', $usuario, 'AND', 'senha', '=', $senha)->value("usuario_id");
+    $_SESSION['ID']= $usuarioId;
 
-        "users"=> [
-            "root"=> "teste"
-        ],
-        "error" => function ($response) {
-            $body = $response->getBody();
-            $body->write(json_encode(array("response"=>"Usuario ou senha incorretos")));
-            return $response->withBody($body);
-        }]);
-
+    if($verifica) {
+        return new httpBasicAuthentication([
+            "users" => [
+                "root" => "teste"
+            ],
+            "error" => function ($response) {
+                $body = $response->getBody();
+                $body->write(json_encode(array("response" => "Usuario ou senha incorretos")));
+                return $response->withBody($body);
+            }]);
+    }
 
 }
 
