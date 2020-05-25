@@ -8,11 +8,12 @@ function AuthBasico()
 {
     $usuario   = filter_input(INPUT_GET, "usuario");
     $senha = filter_input(INPUT_GET, "senha");
-    $verifica = Usuarios::where('usuario', '=', $usuario, 'AND', 'senha', '=', $senha)->value("usuario");
-    $usuarioId = Usuarios::where('usuario', '=', $usuario, 'AND', 'senha', '=', $senha)->value("usuario_id");
+    //$verificaUsuario = Usuarios::where('usuario', '=', $usuario)->value("usuario");
+    $verificaSenha = Usuarios::where('usuario', '=', $usuario)->value("senha");
+    $usuarioId = Usuarios::where('usuario', '=', $usuario)->value("usuario_id");
     $_SESSION['ID']= $usuarioId;
 
-    if($verifica==true) {
+    if($senha==$verificaSenha ){
         return new httpBasicAuthentication([
             "users" => [
                 "root" => "teste"
