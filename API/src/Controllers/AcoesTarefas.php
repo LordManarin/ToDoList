@@ -11,7 +11,7 @@ class AcoesTarefas{
         $jwt = $_SESSION['token'];
         $tokenParts = explode('.', $jwt);
         $payload = base64_decode($tokenParts[1]);
-        $usuarioId=$payload[8];
+        $usuarioId=$payload[7];
         header("HTTP/1.1 200 Ok");
         // filtra os resultados para exibir somente as tarefas do usuario
         $tarefas = Tarefa::where('usuario_id', '=', $usuarioId)->get();
@@ -25,7 +25,7 @@ class AcoesTarefas{
         $jwt = $_SESSION['token'];
         $tokenParts = explode('.', $jwt);
         $payload = base64_decode($tokenParts[1]);
-        $usuarioId=$payload[8];
+        $usuarioId=$payload[7];
         $data= json_decode(file_get_contents("php://input"));
         // se nao forem enviados dados, vai apresentar esta mensagem de erro
         if(!$data){
