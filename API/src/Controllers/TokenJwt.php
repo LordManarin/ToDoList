@@ -16,6 +16,7 @@ class TokenJwt{
         ];
         $token = JWT::encode($tokenPayLoad, $key);
         $_SESSION['token']= $token;
+        $_COOKIE['token']= $token;
         print $token;
 
     }
