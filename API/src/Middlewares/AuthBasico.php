@@ -21,7 +21,7 @@ function AuthBasico(){
 
     //verifica se o usuario e senha são compativeis
     if($senha==$verificaSenha && $usuario==$verificaUsuario ){
-        header("HTTP/1.1 400 BAD REQUEST");
+        header("HTTP/1.1 401 OK");
         // caso sejam compativeis, define o usuario e senha da autenticacao HTTP basica e prossegue para a rota
         return new httpBasicAuthentication([
          "users" => [
@@ -31,12 +31,12 @@ function AuthBasico(){
          // caso o usuario informe uma senha de autenticacao basica diferente da do usuario, informa este erro
             "error" => function ($response) {
                 $body = $response->getBody();
-                $body->write(json_encode(array("response"=>"Usuario ou senha httpBasicAuthentication incorretos")));
+                $body->write(json_encode(array("response"=>"Autenticação invalida")));
                 return $response->withBody($body);
             }]);
     }else{
         // caso usuario e senha nao sejam compativeis, informa este erro
-        header("HTTP/1.1 400 BAD REQUEST");
+        header("HTTP/1.1 401 OK");
         echo json_encode(array("response"=>"Usuario ou senha do sistema incorretos"));
         exit;
     }
