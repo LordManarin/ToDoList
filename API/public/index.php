@@ -5,7 +5,6 @@ use Slim\App;
 use Slim\Container;
 use function Source\Controllers\AuthBasico;
 
-
 require __DIR__ . "/../vendor/autoload.php";
 require __DIR__ . "/../bootstrap.php";
 require __DIR__ . "/../src/Controllers/AcoesTarefas.php";
