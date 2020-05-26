@@ -8,9 +8,13 @@ use Source\Models\Tarefa;
 
 class AcoesTarefas{
     function exibe(){
+        // recebe o token
         $jwt = $_SESSION['token'];
+        // quebra o token
         $tokenParts = explode('.', $jwt);
+        // decoda o token
         $payload = base64_decode($tokenParts[1]);
+        // captura o ID do token
         $usuarioId=$payload[7];
         header("HTTP/1.1 200 Ok");
         // filtra os resultados para exibir somente as tarefas do usuario
@@ -21,10 +25,13 @@ class AcoesTarefas{
         echo json_encode(array("response" => $return));
     }
     function cria(){
-        //$usuarioId = $_SESSION['usuario_Id'];
+        // recebe o token
         $jwt = $_SESSION['token'];
+        // quebra o token
         $tokenParts = explode('.', $jwt);
+        // decoda o token
         $payload = base64_decode($tokenParts[1]);
+        // captura o ID do token
         $usuarioId=$payload[7];
         $data= json_decode(file_get_contents("php://input"));
         // se nao forem enviados dados, vai apresentar esta mensagem de erro

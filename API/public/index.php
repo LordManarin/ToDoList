@@ -22,9 +22,9 @@ $configuration = [
 $configuracao = new Container($configuration);
 $app = new App($configuracao);
 
-$app->post('/login', function (Request $request, Response $response) {
+$app->post('/login', function (Request $request, Response $response, $next) {
     (new Source\Controllers\TokenJwt)->GerarToken();
-  })->add(AuthBasico());
+    })->add(AuthBasico());
 
 $app->group('', function () use ($app) {
     $app->get('/exibe', function (Request $request, Response $response) {
@@ -39,6 +39,6 @@ $app->group('', function () use ($app) {
     $app->delete('/deleta', function (Request $request, Response $response) {
         (new Source\Controllers\AcoesTarefas)->deleta();
     });
-})->add(AuthToken());
+    })->add(AuthToken());
 
 $app->run();
