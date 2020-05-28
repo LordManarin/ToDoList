@@ -2,8 +2,8 @@
 namespace Source\Controllers;
 require __DIR__ . "/../../vendor/autoload.php";
 use Firebase\JWT\JWT;
-
 class TokenJwt{
+
     function GenerateToken(){
         $userId = $_SESSION['ID'];
         $name= $_SESSION["Name"];

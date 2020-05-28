@@ -7,12 +7,10 @@ use Slim\Container;
 require __DIR__ . "/vendor/autoload.php";
 require __DIR__ . "/src/Infrastructure/bootstrap.php";
 require __DIR__ . "/src/Controllers/Tasks.php";
-require __DIR__ . "/src/Models/Validations.php";
-require __DIR__ . "/src/Middlewares/TokenAuthentication.php";
-require __DIR__ . "/src/Middlewares/BasicAuthentication.php";
-
+require __DIR__ . "/src/Domain/Models/Validations.php";
+require __DIR__ . "/src/Infrastructure/Middlewares/TokenAuthentication.php";
+require __DIR__ . "/src/Infrastructure/Middlewares/BasicAuthentication.php";
 session_start();
-
 $config = [
     'settings' => [
         'displayErrorDetails' => true,
