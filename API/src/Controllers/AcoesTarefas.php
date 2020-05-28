@@ -16,7 +16,7 @@ class AcoesTarefas{
         $payload = base64_decode($tokenParts[1]);
         // captura o ID do token
         $usuarioId=$payload[7];
-        header("HTTP/1.1 200 Ok");
+        header("HTTP/1.1 200 Success");
         // filtra os resultados para exibir somente as tarefas do usuario
         $tarefas = Tarefa::where('usuario_id', '=', $usuarioId)->get();
         $return = array();
@@ -75,7 +75,7 @@ class AcoesTarefas{
     function deleta(){
         $tarefaId = filter_input(INPUT_GET, 'id');
         if(!$tarefaId){
-            header("HTTP/1.1 201 Sucess");
+            header("HTTP/1.1 201 Success");
             echo json_encode(array("response" => "Nenhuma tarefa localizada"));
             exit;
         }

@@ -16,12 +16,13 @@ function AuthBasico(){
     // puxa o usuario, senha e Id do banco de dados
     $verificaUsuario = Usuarios::where('usuario', '=', $usuario)->value("usuario");
     $verificaSenha = Usuarios::where('usuario', '=', $usuario)->value("senha");
-    $usuarioId = Usuarios::where('usuario', '=', $usuario)->value("usuario_id");
-    $_SESSION['ID']= $usuarioId;
+    $_SESSION['ID']= Usuarios::where('usuario', '=', $usuario)->value("usuario_id");
+    $_SESSION['Nome']= Usuarios::where('usuario', '=', $usuario)->value("nome");
+    $_SESSION['Usuario']= $usuario;
 
     //verifica se o usuario e senha são compativeis
     if($senha==$verificaSenha && $usuario==$verificaUsuario ){
-        header("HTTP/1.1 401 OK");
+        header("HTTP/1.1 200 Success");
         // caso sejam compativeis, define o usuario e senha da autenticacao HTTP basica e prossegue para a rota
         return new httpBasicAuthentication([
          "users" => [
@@ -34,12 +35,18 @@ function AuthBasico(){
                 $body->write(json_encode(array("response"=>"Autenticação invalida")));
                 return $response->withBody($body);
             }]);
-    }else{
-        // caso usuario e senha nao sejam compativeis, informa este erro
-        header("HTTP/1.1 401 OK");
-        echo json_encode(array("response"=>"Usuario ou senha do sistema incorretos"));
-        exit;
+    }elseif($senha!=$verificaSenha){
+            header("HTTP/1.1 401 OK");
+            echo json_encode(array("response"=>"Senha incorreta"));
+            exit;
+    }elseif($usuario!=$verificaUsuario){
+            // caso usuario e senha nao sejam compativeis, informa este erro
+            header("HTTP/1.1 401 OK");
+            echo json_encode(array("response" => "Este usuario não existe no sistema"));
+            exit;
+
     }
+
 }
 
 
