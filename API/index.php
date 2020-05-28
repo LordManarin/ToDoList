@@ -5,7 +5,7 @@ use Slim\App;
 use Slim\Container;
 
 require __DIR__ . "/vendor/autoload.php";
-require __DIR__ . "/bootstrap.php";
+require __DIR__ . "/src/Infraestrutura/bootstrap.php";
 require __DIR__ . "/src/Controllers/AcoesTarefas.php";
 require __DIR__ . "/src/Models/Validations.php";
 require __DIR__ . "/src/Middlewares/AutenticaToken.php";

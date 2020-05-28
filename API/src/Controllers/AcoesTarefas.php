@@ -1,39 +1,26 @@
 <?php
 namespace Source\Controllers;
-require __DIR__. "/../../vendor/autoload.php";
-
-use Firebase\JWT\JWT;
 use Source\Models\Validations;
 use Source\Models\Tarefa;
+
 class AcoesTarefas{
     function exibeTarefas(){
-        // recebe o token
         $jwt = $_SESSION['token'];
-        // quebra o token
         $tokenParts = explode('.', $jwt);
-        // decoda o token
         $payload = base64_decode($tokenParts[1]);
-        // captura o ID do token
         $usuarioId=$payload[7];
         header("HTTP/1.1 200 Success");
-        // filtra os resultados para exibir somente as tarefas do usuario
         $tarefas = Tarefa::where('usuario_id', '=', $usuarioId)->get();
         $return = array();
         array_push($return, $tarefas->all());
-        // exibe as tarefas do usuario
         echo json_encode(array("response" => $return));
     }
     function criaTarefas(){
-        // recebe o token
         $jwt = $_SESSION['token'];
-        // quebra o token
         $tokenParts = explode('.', $jwt);
-        // decoda o token
         $payload = base64_decode($tokenParts[1]);
-        // captura o ID do token
         $usuarioId=$payload[7];
         $data= json_decode(file_get_contents("php://input"));
-        // se nao forem enviados dados, vai apresentar esta mensagem de erro
         if(!$data){
             header("HTTP/1.1 400 BAD REQUEST");
             echo json_encode(array("response"=>"Nenhum dado informado"));
@@ -59,14 +46,12 @@ class AcoesTarefas{
             echo json_encode(array("responde"=>"Campos invalidos!", "fields"=>$errors));
             exit;
         }
-        // se tudo OK, envia os dados para o DB
         $tarefa = new Tarefa();
         $tarefa->usuario_id = $usuarioId;
         $tarefa->tarefa = $data->tarefa;
         $tarefa->descricao = $data->descricao;
         $tarefa->concluido = $data->concluido;
         $tarefa->save();
-        // se der tudo certo, informa esta mensagem
         header("HTTP/1.1 200 CREATED");
         echo json_encode(array("response" => "Tarefa Criada com Sucesso"));
     }
@@ -90,14 +75,12 @@ class AcoesTarefas{
 
     function atualizaTarefas(){
         $data = json_decode(file_get_contents("php://input"));
-        // se nao forem enviados dados, vai apresentar esta mensagem de erro
         if (!$data) {
             header("HTTP/1.1 400 BAD REQUEST");
             echo json_encode(array("response" => "Nenhum dado informado"));
             exit;
         }
         $errors = array();
-        // testa se todos os campos estao preenchidos
 
         if (!Validations::validationsString($data->tarefa)) {
             array_push($errors, "Tarefa invalido");
@@ -113,21 +96,17 @@ class AcoesTarefas{
             echo json_encode(array("responde" => "Campos invalidos!", "fields" => $errors));
             exit;
         }
-        // captura o ID da tarefa
         $tarefaId = filter_input(INPUT_GET, "id");
-        //verifica se a tarefa existe
         if (!$tarefaId) {
             header("HTTP/1.1 400  BAD REQUEST");
             echo json_encode(array("responde" => "ID não informado"));
             exit;
         }
-        //$tarefa = (new Tarefa())->findById($tarefaId);
         if (count($errors)>0) {
             header("HTTP/1.1 201");
             echo json_encode(array("response" => "Nenhuma tarefa localizada"));
             exit;
         }
-        // informa os novos dados ao banco de dados
         $tarefaId = filter_input(INPUT_GET, "id");
         $tarefa = Tarefa::find($tarefaId);
         $tarefa->tarefa = $data->tarefa;
