@@ -1,7 +1,7 @@
 <?php
 namespace Source\Controllers;
 use Source\Models\Validations;
-use Source\Models\Task;
+use Source\Domain\Models\Task;
 
 class Tasks{
     function ShowTasks(){

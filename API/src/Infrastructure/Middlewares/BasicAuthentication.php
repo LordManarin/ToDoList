@@ -1,6 +1,6 @@
 <?php
 namespace Source\Controllers;
-use Source\Models\Users;
+use Source\Domain\Models\Users;
 use Tuupola\Middleware\HttpBasicAuthentication;
 
 class BasicAuthentication{

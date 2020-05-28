@@ -1,5 +1,5 @@
 <?php
-namespace Source\Models;
+namespace Source\Domain\Models;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Users extends eloquent{
