@@ -5,9 +5,8 @@ require __DIR__. "/../../vendor/autoload.php";
 use Firebase\JWT\JWT;
 use Source\Models\Validations;
 use Source\Models\Tarefa;
-
 class AcoesTarefas{
-    function exibe(){
+    function exibeTarefas(){
         // recebe o token
         $jwt = $_SESSION['token'];
         // quebra o token
@@ -24,7 +23,7 @@ class AcoesTarefas{
         // exibe as tarefas do usuario
         echo json_encode(array("response" => $return));
     }
-    function cria(){
+    function criaTarefas(){
         // recebe o token
         $jwt = $_SESSION['token'];
         // quebra o token
@@ -72,7 +71,7 @@ class AcoesTarefas{
         echo json_encode(array("response" => "Tarefa Criada com Sucesso"));
     }
 
-    function deleta(){
+    function deletaTarefas(){
         $tarefaId = filter_input(INPUT_GET, 'id');
         if(!$tarefaId){
             header("HTTP/1.1 201 Success");
@@ -89,7 +88,7 @@ class AcoesTarefas{
         }
     }
 
-    function atualiza(){
+    function atualizaTarefas(){
         $data = json_decode(file_get_contents("php://input"));
         // se nao forem enviados dados, vai apresentar esta mensagem de erro
         if (!$data) {

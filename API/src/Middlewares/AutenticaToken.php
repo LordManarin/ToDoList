@@ -1,10 +1,12 @@
 <?php
-
+namespace Source\Controllers;
 use Tuupola\Middleware\JwtAuthentication;
 
-function AuthToken(){
+class AutenticaToken{
+function AutenticaToken(){
+    //$jwt = $_SESSION['token'];
+    //print $jwt;
     return new JwtAuthentication([
-
         "secret" => "abcde",
         "attribute"=>"jwt"]);
-}
+}}

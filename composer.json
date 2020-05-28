@@ -1,0 +1,14 @@
+{
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rafael Manarin",
+            "email": "rafael.manarin@engeplus.com.br"
+        }
+
+    ],
+    "scripts": {
+        "start": "php -S localhost:8080 -t API",
+        "test": "phpunit"
+    }
+}
