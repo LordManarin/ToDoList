@@ -2,14 +2,14 @@
 namespace Source\Models;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class Tarefa extends Eloquent{
+class Task extends Eloquent{
     public $timestamps = false;
-    protected $table = 'tarefas';
+    protected $table = 'tasks';
     protected $fillable = [
         "id",
-        "usuario_id",
-        "tarefa",
-        "descricao",
-        "concluido"
+        "user_id",
+        "task",
+        "description",
+        "done"
     ];
 }

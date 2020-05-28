@@ -15,6 +15,7 @@
       <excludeFolder url="file://$MODULE_DIR$/API/vendor/illuminate/support" />
       <excludeFolder url="file://$MODULE_DIR$/API/vendor/nesbot/carbon" />
       <excludeFolder url="file://$MODULE_DIR$/API/vendor/nikic/fast-route" />
+      <excludeFolder url="file://$MODULE_DIR$/API/vendor/phpoption/phpoption" />
       <excludeFolder url="file://$MODULE_DIR$/API/vendor/pimple/pimple" />
       <excludeFolder url="file://$MODULE_DIR$/API/vendor/psr/container" />
       <excludeFolder url="file://$MODULE_DIR$/API/vendor/psr/http-factory" />
@@ -25,6 +26,7 @@
       <excludeFolder url="file://$MODULE_DIR$/API/vendor/psr/simple-cache" />
       <excludeFolder url="file://$MODULE_DIR$/API/vendor/slim/slim" />
       <excludeFolder url="file://$MODULE_DIR$/API/vendor/symfony/console" />
+      <excludeFolder url="file://$MODULE_DIR$/API/vendor/symfony/polyfill-ctype" />
       <excludeFolder url="file://$MODULE_DIR$/API/vendor/symfony/polyfill-mbstring" />
       <excludeFolder url="file://$MODULE_DIR$/API/vendor/symfony/polyfill-php73" />
       <excludeFolder url="file://$MODULE_DIR$/API/vendor/symfony/service-contracts" />
@@ -34,6 +36,7 @@
       <excludeFolder url="file://$MODULE_DIR$/API/vendor/tuupola/http-factory" />
       <excludeFolder url="file://$MODULE_DIR$/API/vendor/tuupola/slim-basic-auth" />
       <excludeFolder url="file://$MODULE_DIR$/API/vendor/tuupola/slim-jwt-auth" />
+      <excludeFolder url="file://$MODULE_DIR$/API/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/API/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/coffeecode/datalayer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />

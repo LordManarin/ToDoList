@@ -5,39 +5,39 @@ use Slim\App;
 use Slim\Container;
 
 require __DIR__ . "/vendor/autoload.php";
-require __DIR__ . "/src/Infraestrutura/bootstrap.php";
-require __DIR__ . "/src/Controllers/AcoesTarefas.php";
+require __DIR__ . "/src/Infrastructure/bootstrap.php";
+require __DIR__ . "/src/Controllers/Tasks.php";
 require __DIR__ . "/src/Models/Validations.php";
-require __DIR__ . "/src/Middlewares/AutenticaToken.php";
-require __DIR__ . "/src/Middlewares/AutenticaBasico.php";
+require __DIR__ . "/src/Middlewares/TokenAuthentication.php";
+require __DIR__ . "/src/Middlewares/BasicAuthentication.php";
 
 session_start();
 
-$configuration = [
+$config = [
     'settings' => [
         'displayErrorDetails' => true,
     ],
 ];
-$configuracao = new Container($configuration);
-$app = new App($configuracao);
+$config = new Container($config);
+$app = new App($config);
 
 $app->post('/login', function (Request $request, Response $response, $next) {
-   (new Source\Controllers\TokenJwt)->GerarToken();
-})->add((new Source\Controllers\AutenticaBasico())->AutenticaBasico());
+   (new Source\Controllers\TokenJwt)->GenerateToken();
+})->add((new Source\Controllers\BasicAuthentication())->BasicAuthentication());
 
 $app->group('/painel', function () use ($app) {
     $app->get('/exibe', function (Request $request, Response $response) {
-        (new Source\Controllers\AcoesTarefas)->exibeTarefas();
+        (new Source\Controllers\Tasks)->ShowTasks();
     });
     $app->post('/posta', function (Request $request, Response $response) {
-        (new Source\Controllers\AcoesTarefas)->criaTarefas();
+        (new Source\Controllers\Tasks)->CreateTasks();
     });
     $app->put('/atualiza', function (Request $request, Response $response) {
-        (new Source\Controllers\AcoesTarefas)->atualizaTarefas();
+        (new Source\Controllers\Tasks)->UpdateTask();
     });
     $app->delete('/deleta', function (Request $request, Response $response) {
-        (new Source\Controllers\AcoesTarefas)->deletaTarefas();
+        (new Source\Controllers\Tasks)->DeleteTask();
     });
-})->add((new Source\Controllers\AutenticaToken)->AutenticaToken());
+})->add((new Source\Controllers\TokenAuthentication)->TokenAuthentication());
 
 $app->run();

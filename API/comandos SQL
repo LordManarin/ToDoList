@@ -1,28 +1,34 @@
-CREATE TABLE usuarios (
-    usuario_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(200) NOT NULL,
-    usuario VARCHAR(200) UNIQUE NOT NULL,
-    senha VARCHAR(200) NOT NULL
+CREATE TABLE users (
+    user_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    user VARCHAR(200) UNIQUE NOT NULL,
+    passwd VARCHAR(200) NOT NULL
 );
 CREATE TABLE tokens (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    usuario_id INT UNSIGNED NOT NULL,
+    user_id INT UNSIGNED NOT NULL,
     token VARCHAR(1000) NOT NULL,
     active TINYINT UNSIGNED NOT NULL DEFAULT 1,
-    CONSTRAINT fk_tokens_usuario_id_usuario_id
-        FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+    CONSTRAINT fk_tokens_user_id_user_id
+        FOREIGN KEY (user_id) REFERENCES user(id)
 );
-CREATE TABLE tarefas (
+CREATE TABLE tasks (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    usuario_id INT NOT NULL,
-    tarefa VARCHAR(255) NOT NULL,
-    descricao VARCHAR(1000) NOT NULL,
-    concluido TINYINT NOT NULL DEFAULT 1
-    CONSTRAINT fk_tarefas_usuario_id_usuario_id
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+    user_id INT NOT NULL,
+    task VARCHAR(255) NOT NULL,
+    description VARCHAR(1000) NOT NULL,
+    done TINYINT NOT NULL DEFAULT 1
+    CONSTRAINT fk_tasks_user_id_user_id
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
-INSERT INTO `usuarios`(`usuario_id`, `nome`, `usuario`, `senha`)
+INSERT INTO `users`(`user_id`, `name`, `user`, `passwd`)
 VALUES ('1', 'Rafael Manarin','rafael','123');
 
-INSERT INTO `usuarios`(`usuario_id`, `nome`, `usuario`, `senha`)
+INSERT INTO `users`(`user_id`, `name`, `user`, `passwd`)
 VALUES ('2', 'Fulano de Tal','fulano','123');
+
+INSERT INTO 'tasks (`user_id`,'task','description', 'done');
+VALUES ('1', 'Teste 1', 'Testando', '2');
+
+INSERT INTO 'tasks (`user_id`,'task','description', 'done');
+VALUES ('2', 'Teste 2', 'Testando', '2');

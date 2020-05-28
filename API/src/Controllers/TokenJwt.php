@@ -4,18 +4,18 @@ require __DIR__ . "/../../vendor/autoload.php";
 use Firebase\JWT\JWT;
 
 class TokenJwt{
-    function GerarToken(){
-        $usuarioId = $_SESSION['ID'];
-        $nome= $_SESSION["Nome"];
-        $usuario   = $_SESSION["Usuario"];
+    function GenerateToken(){
+        $userId = $_SESSION['ID'];
+        $name= $_SESSION["Name"];
+        $user   = $_SESSION["User"];
         $key = "abcde";
         $tokenPayLoad=[
-            "sub"=>$usuarioId,
-            "name"=>$usuario,
+            "sub"=>$userId,
+            "name"=>$user,
         ];
         $token = JWT::encode($tokenPayLoad, $key);
-        $_SESSION['token']= $token;
-        echo json_encode(array("Nome" => $nome, "Id" => $usuarioId, "Token" => $token));
+        $_SESSION['Token']= $token;
+        echo json_encode(array("Nome" => $name, "Id" => $userId, "Token" => $token));
 
     }
 

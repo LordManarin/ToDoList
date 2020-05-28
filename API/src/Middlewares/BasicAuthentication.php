@@ -1,29 +1,29 @@
 <?php
 namespace Source\Controllers;
-use Source\Models\Usuarios;
+use Source\Models\Users;
 use Tuupola\Middleware\HttpBasicAuthentication;
 
-class AutenticaBasico{
-    function AutenticaBasico(){
+class BasicAuthentication{
+    function BasicAuthentication(){
 
-        $usuario = filter_input(INPUT_GET, "usuario");
-        $senha = filter_input(INPUT_GET, "senha");
+        $user = filter_input(INPUT_GET, "usuario");
+        $passwd = filter_input(INPUT_GET, "senha");
 
         //$usuario   = $_SERVER['PHP_AUTH_USER'];
         // $senha = $_SERVER['PHP_AUTH_PW'];
 
-        $verificaUsuario = Usuarios::where('usuario', '=', $usuario)->value("usuario");
-        $verificaSenha = Usuarios::where('usuario', '=', $usuario)->value("senha");
-        $_SESSION['ID'] = Usuarios::where('usuario', '=', $usuario)->value("usuario_id");
-        $_SESSION['Nome'] = Usuarios::where('usuario', '=', $usuario)->value("nome");
-        $_SESSION['Usuario'] = $usuario;
+        $verifyUser = Users::where('user', '=', $user)->value("user");
+        $verifyPasswd = Users::where('user', '=', $user)->value("passwd");
+        $_SESSION['ID'] = Users::where('user', '=', $user)->value("user_id");
+        $_SESSION['Name'] = Users::where('user', '=', $user)->value("name");
+        $_SESSION['User'] = $user;
 
-        if ($senha == $verificaSenha && $usuario == $verificaUsuario) {
+        if ($passwd == $verifyPasswd && $user== $verifyUser) {
             header("HTTP/1.1 200 Success");
             return new httpBasicAuthentication([
 
                     "users" => [
-                        "$usuario" => "$senha",
+                        "$user" => "$passwd",
                         "root" => "teste"
                     ],
                     "error" => function ($response) {
@@ -33,11 +33,11 @@ class AutenticaBasico{
                     }]
             );
 
-        } elseif ($senha != $verificaSenha) {
+        } elseif ($passwd!= $verifyPasswd) {
             header("HTTP/1.1 401 OK");
             echo json_encode(array("response" => "Senha incorreta"));
             exit;
-        } elseif ($usuario != $verificaUsuario) {
+        } elseif ($user != $verifyUser) {
             header("HTTP/1.1 401 OK");
             echo json_encode(array("response" => "Este usuario não existe no sistema"));
             exit;

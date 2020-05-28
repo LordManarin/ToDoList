@@ -34,6 +34,9 @@
       <path value="$PROJECT_DIR$/API/vendor/illuminate/database" />
       <path value="$PROJECT_DIR$/API/vendor/illuminate/support" />
       <path value="$PROJECT_DIR$/API/vendor/composer" />
+      <path value="$PROJECT_DIR$/API/vendor/vlucas/phpdotenv" />
+      <path value="$PROJECT_DIR$/API/vendor/phpoption/phpoption" />
+      <path value="$PROJECT_DIR$/API/vendor/symfony/polyfill-ctype" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />
