@@ -3,8 +3,8 @@ namespace Source\Infrastructure\DAO;
 use Source\Domain\Controllers\User;
 use Source\Domain\Models\Task;
 
-
 class Tasks{
+
     function showTasks(){
         $userId =(new User)->showId();
         $tasks = Task::where('user_id', '=', $userId)->get();
