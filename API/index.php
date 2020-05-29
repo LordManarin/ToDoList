@@ -26,7 +26,7 @@ $config = new Container($config);
 $app = new App($config);
 
 $app->post('/login', function (Request $request, Response $response, $next) {
-    (new Source\Controllers\TokenJwt)->generateToken($request, $response);
+    (new Source\Domain\Controllers\TokenJwt)->generateToken($request, $response);
 })->add((new Source\Controllers\BasicAuthentication())->basicAuthentication());
 
 $app->group('/painel', function () use ($app) {

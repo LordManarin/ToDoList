@@ -8,7 +8,7 @@ class TokenJwt{
         $userId = $_SESSION['ID'];
         $name= $_SESSION["Name"];
         $user = $_SESSION["User"];
-        $key = "abcde";
+        $key = getenv("JWT_PASS");
         $tokenPayLoad=[
             "sub"=>$userId,
             "name"=>$user,
@@ -21,7 +21,7 @@ class TokenJwt{
         $httpHeader = $_SERVER['HTTP_AUTHORIZATION'];
         $tokenParts = explode(" ", $httpHeader);
         $token = $tokenParts[1];
-        $key = "abcde";
+        $key = getenv("JWT_PASS");
         $tokenDecoded = JWT::decode($token, $key, array('HS256'));
         return (array) $tokenDecoded;
     }

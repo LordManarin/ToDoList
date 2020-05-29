@@ -16,7 +16,7 @@
         "tuupola/slim-jwt-auth": "^3.4",
         "ext-pdo": "*",
         "ext-mysqli": "*",
-        "vlucas/phpdotenv": "*"
+        "vlucas/phpdotenv": "3.5"
     },
 
     "config": {
