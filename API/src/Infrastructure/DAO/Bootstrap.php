@@ -2,8 +2,7 @@
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Dotenv\Dotenv;
 
-class Bootstrap
-{
+class Bootstrap{
 
     public static function start()
     {
@@ -13,7 +12,7 @@ class Bootstrap
     }
 
     public static function loadEnv()
-    {
+   {
         $dotenv = Dotenv::create(__DIR__ . "/../../../");
         $dotenv->load();
    }
