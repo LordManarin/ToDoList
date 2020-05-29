@@ -1,7 +1,7 @@
 <?php
-namespace Source\Domain\Models;
-use Source\Domain\Models\ValidateInfos;
-use Source\Controllers\User;
+namespace Source\Infrastructure\DAO;
+use Source\Controllers\ValidateInfos;
+use Source\Domain\Models\Task;
 
 class EditTasks{
     public static function createTasks($data, $userId)
@@ -14,7 +14,7 @@ class EditTasks{
             $task->description = $data->description;
             $task->done = $data->done;
             $task->save();
-            return json_encode(array("response" => "Tarefa Criada com Sucesso"));
+            echo json_encode(array("response" => "Tarefa Criada com Sucesso"));
         }
 
     }
@@ -26,7 +26,7 @@ class EditTasks{
             $task->description = $data->description;
             $task->done = $data->done;
             $task->save();
-            return json_encode(array("response" => "Tarefa Atualizada"));
+            echo json_encode(array("response" => "Tarefa Atualizada"));
         }
     }
     public static function deleteTask($taskId){
@@ -36,9 +36,9 @@ class EditTasks{
         }
         $task= Task::destroy($taskId);
         if($task) {
-            return json_encode(array("response" => "Tarefa removida com sucesso!"));
+            echo json_encode(array("response" => "Tarefa removida com sucesso!"));
         }else{
-            return json_encode(array("response" => "Nenhuma tarefa removida"));
+            echo json_encode(array("response" => "Nenhuma tarefa removida"));
         }
     }
 }

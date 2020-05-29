@@ -1,5 +1,5 @@
 <?php
-namespace Source\Domain\Models;
+namespace Source\Controllers;
 use Source\Models\Validations;
 
 class ValidateInfos{
