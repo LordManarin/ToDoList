@@ -4,7 +4,7 @@ use Source\Domain\Models\Users;
 use Tuupola\Middleware\HttpBasicAuthentication;
 
 class BasicAuthentication{
-    function BasicAuthentication(){
+    function basicAuthentication(){
 
         $user = filter_input(INPUT_GET, "usuario");
         $passwd = filter_input(INPUT_GET, "senha");
@@ -19,7 +19,6 @@ class BasicAuthentication{
         $_SESSION['User'] = $user;
 
         if ($passwd == $verifyPasswd && $user== $verifyUser) {
-            header("HTTP/1.1 200 Success");
             return new httpBasicAuthentication([
 
                     "users" => [
@@ -34,11 +33,9 @@ class BasicAuthentication{
             );
 
         } elseif ($passwd!= $verifyPasswd) {
-            header("HTTP/1.1 401 OK");
             echo json_encode(array("response" => "Senha incorreta"));
             exit;
         } elseif ($user != $verifyUser) {
-            header("HTTP/1.1 401 OK");
             echo json_encode(array("response" => "Este usuario não existe no sistema"));
             exit;
 

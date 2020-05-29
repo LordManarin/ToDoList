@@ -20,22 +20,22 @@ $config = new Container($config);
 $app = new App($config);
 
 $app->post('/login', function (Request $request, Response $response, $next) {
-   (new Source\Controllers\TokenJwt)->GenerateToken();
-})->add((new Source\Controllers\BasicAuthentication())->BasicAuthentication());
+   (new Source\Controllers\TokenJwt)->generateToken();
+})->add((new Source\Controllers\BasicAuthentication())->basicAuthentication());
 
 $app->group('/painel', function () use ($app) {
     $app->get('/exibe', function (Request $request, Response $response) {
-        (new Source\Controllers\Tasks)->ShowTasks();
+        (new Source\Controllers\Tasks)->showTasks();
     });
     $app->post('/posta', function (Request $request, Response $response) {
-        (new Source\Controllers\Tasks)->CreateTasks();
+        (new Source\Controllers\Tasks)->createTasks();
     });
     $app->put('/atualiza', function (Request $request, Response $response) {
-        (new Source\Controllers\Tasks)->UpdateTask();
+        (new Source\Controllers\Tasks)->updateTask();
     });
     $app->delete('/deleta', function (Request $request, Response $response) {
-        (new Source\Controllers\Tasks)->DeleteTask();
+        (new Source\Controllers\Tasks)->deleteTask();
     });
-})->add((new Source\Controllers\TokenAuthentication)->TokenAuthentication());
+})->add((new Source\Controllers\TokenAuthentication)->tokenAuthentication());
 
 $app->run();
