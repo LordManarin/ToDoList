@@ -7,7 +7,6 @@ class AuthMiddle extends Middleware{
             $this->container->flash->addMessage('Por favor, faça login para continuar');
             return $response->withRedirect($this->container->router->pathFor('/login'));
         }
-
         $response = $next($request, $response);
         return $response;
     }

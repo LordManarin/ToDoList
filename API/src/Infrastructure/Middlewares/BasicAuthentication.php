@@ -5,12 +5,8 @@ use Tuupola\Middleware\HttpBasicAuthentication;
 
 class BasicAuthentication{
     function basicAuthentication(){
-
         $user = filter_input(INPUT_GET, "usuario");
         $passwd = filter_input(INPUT_GET, "senha");
-
-        //$usuario   = $_SERVER['PHP_AUTH_USER'];
-        // $senha = $_SERVER['PHP_AUTH_PW'];
 
         $verifyUser = Users::where('user', '=', $user)->value("user");
         $verifyPasswd = Users::where('user', '=', $user)->value("passwd");

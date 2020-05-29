@@ -1,12 +1,9 @@
 <?php
-namespace Source\Controllers;
+namespace Source\Middlewares;
 use Tuupola\Middleware\JwtAuthentication;
 
 class TokenAuthentication{
 function tokenAuthentication(){
-    //$jwt = $_SESSION['Token'];
-    //print $jwt;
-    //$secret = getenv('JWT_PASS');
     return new JwtAuthentication([
         "secret" => "abcde",
         "attribute"=>"jwt"]);
