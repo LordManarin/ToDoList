@@ -8,7 +8,7 @@ use Source\Infrastructure\Middlewares;
 use Source\Models\Validations;
 
 require __DIR__ . "/vendor/autoload.php";
-require __DIR__ . "/src/Infrastructure/bootstrap.php";
+require __DIR__ . "/src/Infrastructure/DAO/bootstrap.php";
 require __DIR__ . "/src/Infrastructure/DAO/Tasks.php";
 require __DIR__ . "/src/Domain/Models/Validations.php";
 require __DIR__ . "/src/Infrastructure/Middlewares/TokenAuthentication.php";

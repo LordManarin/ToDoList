@@ -1,6 +1,6 @@
 <?php
 namespace Source\Infrastructure\DAO;
-use Source\Controllers\User;
+use Source\Domain\Controllers\User;
 use Source\Domain\Models\Task;
 
 

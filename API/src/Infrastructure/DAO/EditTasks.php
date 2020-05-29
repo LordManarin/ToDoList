@@ -1,6 +1,6 @@
 <?php
 namespace Source\Infrastructure\DAO;
-use Source\Controllers\ValidateInfos;
+use Source\Domain\Controllers\ValidateInfos;
 use Source\Domain\Models\Task;
 
 class EditTasks{

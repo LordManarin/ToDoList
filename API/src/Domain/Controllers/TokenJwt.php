@@ -1,8 +1,6 @@
 <?php
-namespace Source\Controllers;
-require __DIR__ . "/../../vendor/autoload.php";
+namespace Source\Domain\Controllers;
 use Firebase\JWT\JWT;
-use Tuupola\Middleware\JwtAuthentication;
 
 class TokenJwt{
 
