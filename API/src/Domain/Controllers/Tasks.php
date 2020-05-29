@@ -1,7 +1,7 @@
 <?php
-namespace Source\Infrastructure\DAO;
-use Source\Domain\Controllers\User;
+namespace Source\Domain\Controllers;
 use Source\Domain\Models\Task;
+use Source\Infrastructure\DAO\EditTasks;
 
 class Tasks{
    public $userId;
