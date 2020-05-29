@@ -28,7 +28,7 @@ $app->post('/login', function (Request $request, Response $response, $next) {
 
 $app->group('/painel', function () use ($app) {
     $app->post('/posta', function (Request $request, Response $response) {
-        (new Source\Infrastructure\DAO\Tasks)->createTasks();
+        (new Source\Infrastructure\DAO\Tasks)->postTasks();
     });
     $app->put('/atualiza', function (Request $request, Response $response) {
         (new Source\Infrastructure\DAO\Tasks)->updateTask();
