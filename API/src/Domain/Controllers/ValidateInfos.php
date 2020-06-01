@@ -20,15 +20,10 @@ class ValidateInfos{
             array_push($errors, "Estado Invalido");
         }
         if(count($errors)>0){
-            header("HTTP/1.1 400  BAD REQUEST");
             echo json_encode(array("responde"=>"Campos invalidos!", "fields"=>$errors));
             exit;
+        }else{
+            return $data;
         }
-        if(count($errors)>0){
-            header("HTTP/1.1 400  BAD REQUEST");
-            echo json_encode(array("responde"=>"Campos invalidos!", "fields"=>$errors));
-            exit;
-        }
-        return $data;
     }
 }
