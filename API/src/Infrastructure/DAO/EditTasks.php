@@ -30,17 +30,13 @@ class EditTasks{
         }
     }
     public static function deleteTask($taskId){
-        if(!$taskId) {
-            echo json_encode(array("response" => "Nenhuma tarefa localizada"));
-            exit;
+        $validate = ValidateInfos::validateTaskId($taskId);
+        if($validate) {
+           Task::destroy($taskId);
         }
-        $task= Task::destroy($taskId);
-        if($task) {
             echo json_encode(array("response" => "Tarefa removida com sucesso!"));
-        }else{
-            echo json_encode(array("response" => "Nenhuma tarefa removida"));
         }
-    }
+
 
     public static function showTasks($userId){
         $tasks = Task::where('user_id', '=', $userId)->get();
