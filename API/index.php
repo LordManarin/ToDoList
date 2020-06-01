@@ -1,5 +1,4 @@
 <?php
-
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 use Slim\App;
@@ -9,7 +8,7 @@ use Source\Models\Validations;
 
 require __DIR__ . "/vendor/autoload.php";
 require __DIR__ . "/src/Infrastructure/DAO/Bootstrap.php";
-require __DIR__ . "/src/Infrastructure/DAO/Tasks.php";
+require __DIR__ . "/src/Domain/Controllers/Tasks.php";
 require __DIR__ . "/src/Domain/Models/Validations.php";
 require __DIR__ . "/src/Infrastructure/Middlewares/TokenAuthentication.php";
 require __DIR__ . "/src/Infrastructure/Middlewares/BasicAuthentication.php";
@@ -31,16 +30,16 @@ $app->post('/login', function (Request $request, Response $response, $next) {
 
 $app->group('/painel', function () use ($app) {
     $app->post('/posta', function (Request $request, Response $response) {
-        (new Source\Infrastructure\DAO\Tasks)->postTasks();
+        (new Source\Domain\Controllers\Tasks)->postTasks();
     });
     $app->put('/atualiza', function (Request $request, Response $response) {
-        (new Source\Infrastructure\DAO\Tasks)->updateTask();
+        (new Source\Domain\Controllers\Tasks)->updateTask();
     });
     $app->delete('/deleta', function (Request $request, Response $response) {
-        (new Source\Infrastructure\DAO\Tasks)->deleteTask();
+        (new Source\Domain\Controllers\Tasks)->deleteTask();
     });
     $app->get('/exibe', function (Request $request, Response $response) {
-        (new Source\Infrastructure\DAO\Tasks)->showTasks();
+        (new Source\Domain\Controllers\Tasks)->showTasks();
     });
 })->add((new Source\Middlewares\TokenAuthentication)->tokenAuthentication());
 
