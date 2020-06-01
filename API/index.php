@@ -4,7 +4,6 @@ use \Psr\Http\Message\ResponseInterface as Response;
 use Slim\App;
 use Slim\Container;
 use Source\Infrastructure\Middlewares;
-use Source\Models\Validations;
 
 require __DIR__ . "/vendor/autoload.php";
 require __DIR__ . "/src/Infrastructure/DAO/Bootstrap.php";
@@ -26,7 +25,7 @@ $app = new App($config);
 
 $app->post('/login', function (Request $request, Response $response, $next) {
     (new Source\Domain\Controllers\TokenJwt)->generateToken($request, $response);
-})->add((new Source\Controllers\BasicAuthentication())->basicAuthentication());
+})->add((new Source\Middlewares\BasicAuthentication())->basicAuthentication());
 
 $app->group('/painel', function () use ($app) {
     $app->post('/posta', function (Request $request, Response $response) {
