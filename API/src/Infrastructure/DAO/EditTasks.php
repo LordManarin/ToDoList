@@ -41,5 +41,10 @@ class EditTasks{
             echo json_encode(array("response" => "Nenhuma tarefa removida"));
         }
     }
+
+    public static function showTasks($userId){
+        $tasks = Task::where('user_id', '=', $userId)->get();
+        echo json_encode(array("response" => $tasks->all()));
+    }
 }
 
