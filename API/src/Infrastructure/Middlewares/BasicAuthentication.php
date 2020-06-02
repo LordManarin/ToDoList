@@ -1,6 +1,5 @@
 <?php
 namespace Source\Middlewares;
-use Source\Infrastructure\DAO\UserHttp;
 use Tuupola\Middleware\HttpBasicAuthentication;
 
 class BasicAuthentication{
@@ -16,7 +15,7 @@ class BasicAuthentication{
     function basicAuthentication(){
         $user = $this->user;
         $passwd = $this->passwd;
-        $verify = (new UserHttp)->VerifyUser($user,$passwd);
+        $verify = (new UserHttp)->verifyUser($user,$passwd);
         if ($verify) {
             return new httpBasicAuthentication([
                     "users" => [

@@ -1,7 +1,5 @@
 <?php
-
-namespace Source\Domain\Infrastructure\DAO;
-
+namespace Source\Middlewares;
 use Source\Domain\Models\Users;
 
 class UserHttp{

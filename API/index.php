@@ -3,9 +3,10 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 use Slim\App;
 use Slim\Container;
-use Source\Infrastructure\Middlewares;
+use Source\Middlewares;
 
 require __DIR__ . "/vendor/autoload.php";
+require __DIR__ . "/src/Infrastructure/Middlewares/UserHttp.php";
 require __DIR__ . "/src/Infrastructure/DAO/Bootstrap.php";
 require __DIR__ . "/src/Domain/Controllers/Tasks.php";
 require __DIR__ . "/src/Domain/Models/Validations.php";
