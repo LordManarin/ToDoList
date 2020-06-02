@@ -6,12 +6,13 @@ use Slim\Container;
 use Source\Middlewares;
 
 require __DIR__ . "/vendor/autoload.php";
-require __DIR__ . "/src/Infrastructure/Middlewares/UserHttp.php";
 require __DIR__ . "/src/Infrastructure/DAO/Bootstrap.php";
 require __DIR__ . "/src/Domain/Controllers/Tasks.php";
 require __DIR__ . "/src/Domain/Models/Validations.php";
 require __DIR__ . "/src/Infrastructure/Middlewares/TokenAuthentication.php";
 require __DIR__ . "/src/Infrastructure/Middlewares/BasicAuthentication.php";
+require __DIR__ . "/src/Infrastructure/Middlewares/UserHttp.php";
+
 
 session_start();
 Bootstrap::start();

@@ -1,3 +1,6 @@
 .idea/
 /vendor/
-/API/vendor/
+/API/vendor
+.env
+composer.phar
+comandos SQL
