@@ -1,43 +1,33 @@
 <?php
-namespace Source\Controllers;
-use Source\Domain\Models\Users;
+namespace Source\Middlewares;
+use Source\Infrastructure\DAO\UserHttp;
 use Tuupola\Middleware\HttpBasicAuthentication;
 
 class BasicAuthentication{
+    public $user;
+    public $passwd;
+
+    public function __construct(){
+        $httpHeader = $_SERVER['HTTP_AUTHORIZATION'];
+        $this->user = (new UserHttp)->getUser($httpHeader);
+        $this->passwd = (new UserHttp)->getPasswd($httpHeader);
+    }
+
     function basicAuthentication(){
-        $user = filter_input(INPUT_GET, "usuario");
-        $passwd = filter_input(INPUT_GET, "senha");
-
-        $verifyUser = Users::where('user', '=', $user)->value("user");
-        $verifyPasswd = Users::where('user', '=', $user)->value("passwd");
-        $_SESSION['ID'] = Users::where('user', '=', $user)->value("user_id");
-        $_SESSION['Name'] = Users::where('user', '=', $user)->value("name");
-        $_SESSION['User'] = $user;
-
-        if ($passwd == $verifyPasswd && $user== $verifyUser) {
+        $user = $this->user;
+        $passwd = $this->passwd;
+        $verify = (new UserHttp)->VerifyUser($user,$passwd);
+        if ($verify) {
             return new httpBasicAuthentication([
-
                     "users" => [
                         "$user" => "$passwd",
-                        "root" => "teste"
+                        "root"=> "123"
                     ],
                     "error" => function ($response) {
                         $body = $response->getBody();
                         $body->write(json_encode(array("response" => "Autenticação invalida")));
                         return $response->withBody($body);
-                    }]
-            );
-
-        } elseif ($passwd!= $verifyPasswd) {
-            echo json_encode(array("response" => "Senha incorreta"));
-            exit;
-        } elseif ($user != $verifyUser) {
-            echo json_encode(array("response" => "Este usuario não existe no sistema"));
-            exit;
-
+                    }]);
         }
     }
 }
-
-
-

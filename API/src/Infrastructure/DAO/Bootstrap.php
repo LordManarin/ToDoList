@@ -5,8 +5,7 @@ use Dotenv\Dotenv;
 class Bootstrap{
 
     public static function start()
-    {
-        self::config();
+    {     
         self::loadEnv();
         self::connect();
     }
@@ -16,12 +15,6 @@ class Bootstrap{
         $dotenv = Dotenv::create(__DIR__ . "/../../../");
         $dotenv->load();
    }
-
-    private static function config()
-    {
-        date_default_timezone_set('America/Sao_Paulo');
-    }
-
     public static function connect()
     {
         $capsule = new Capsule;

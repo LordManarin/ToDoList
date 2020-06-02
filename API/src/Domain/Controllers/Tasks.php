@@ -1,6 +1,5 @@
 <?php
 namespace Source\Domain\Controllers;
-use Source\Domain\Models\Task;
 use Source\Infrastructure\DAO\EditTasks;
 
 class Tasks{
@@ -15,8 +14,7 @@ class Tasks{
     }
     function showTasks(){
         $userId= $this->userId;
-        $tasks = Task::where('user_id', '=', $userId)->get();
-        echo json_encode(array("response" => $tasks->all()));
+        EditTasks::showTasks($userId);
     }
     function postTasks(){
         $userId= $this->userId;

@@ -1,28 +1,71 @@
-CREATE TABLE users (
-    user_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(200) NOT NULL,
-    user VARCHAR(200) UNIQUE NOT NULL,
-    passwd VARCHAR(200) NOT NULL
-);
-CREATE TABLE tokens (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_id INT UNSIGNED NOT NULL,
-    token VARCHAR(1000) NOT NULL,
-    active TINYINT UNSIGNED NOT NULL DEFAULT 1,
-    CONSTRAINT fk_tokens_user_id_user_id
-        FOREIGN KEY (user_id) REFERENCES user(id)
-);
-CREATE TABLE tasks (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    task VARCHAR(255) NOT NULL,
-    description VARCHAR(1000) NOT NULL,
-    done TINYINT NOT NULL DEFAULT 1
-    CONSTRAINT fk_tasks_user_id_user_id
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
-INSERT INTO `users`(`user_id`, `name`, `user`, `passwd`)
-VALUES ('1', 'Rafael Manarin','rafael','123');
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-INSERT INTO `users`(`user_id`, `name`, `user`, `passwd`)
-VALUES ('2', 'Fulano de Tal','fulano','123');
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Banco de dados: `todolist`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tasks`
+--
+
+DROP TABLE IF EXISTS `tasks`;
+CREATE TABLE IF NOT EXISTS `tasks` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `task` varchar(255) NOT NULL,
+  `description` varchar(1000) NOT NULL,
+  `done` tinyint(4) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`),
+  KEY `fk_tasks_user_id_user_id` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `user_id`, `task`, `description`, `done`) VALUES
+(1, 1, 'Lorem Ipsum', 'bla bla bla', 1),
+(2, 1, 'Lorem Ipsum', 'bla bla bla', 1),
+(3, 1, 'exemplo 1', 'teste 1', 1),
+(4, 1, 'Lorem Ipsum', 'bla bla', 1),
+(5, 1, 'Lorem Ipsum', 'bla bla', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL,
+  `user` varchar(200) NOT NULL,
+  `passwd` varchar(200) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user` (`user`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `users`
+--
+
+INSERT INTO `users` (`user_id`, `name`, `user`, `passwd`) VALUES
+(1, 'Rafael Manarin', 'rafael', '123'),
+(2, 'Fulano de Tal', 'fulano', '123');
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
